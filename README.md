@@ -24,32 +24,32 @@ go get github.com/NovikovRoman/pubg
 pubgClient := pubg.NewClient(apikey)
 
 if !pubgClient.Status() {
-    log.Fataln("PUBG API not working.")
+	log.Fatalln("PUBG API not working.")
 }
 
 tournaments, err := pubgClient.Tournaments()
 if err != nil {
-    if e, ok := err.(*ErrBadRequest); ok {
+	if e, ok := err.(*pubg.ErrBadRequest); ok {
 		log.Fatalln("Bad request", e, e.GetDetail())
 
-	} else if e, ok := err.(*ErrUnauthorized); ok {
+	} else if e, ok := err.(*pubg.ErrUnauthorized); ok {
 		log.Fatalln("Unauthorized", e, e.GetDetail())
 
-	} else if e, ok := err.(*ErrNotFound); ok {
+	} else if e, ok := err.(*pubg.ErrNotFound); ok {
 		log.Fatalln("Not found", e, e.GetDetail())
 
-	} else if e, ok := err.(*ErrUnsupportedMediaType); ok {
+	} else if e, ok := err.(*pubg.ErrUnsupportedMediaType); ok {
 		log.Fatalln("Unsupported media type", e, e.GetDetail())
 
-	} else if e, ok := err.(*ErrTooManyRequest); ok {
+	} else if e, ok := err.(*pubg.ErrTooManyRequest); ok {
 		log.Fatalln("Too many request", e, e.GetDetail())
 	}
 
-    log.Fatalln(e)
+	log.Fatalln(err)
 }
 
 for _, t := range tournaments.Data {
-    fmt.Println(t.ID, t.Attributes.CreatedAt)
+	fmt.Println(t.ID, t.Attributes.CreatedAt)
 }
 ```
 
