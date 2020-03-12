@@ -1,0 +1,19 @@
+package pubg
+
+import "time"
+
+const (
+	testAccountID     = "account.c0e530e9b7244b358def282782f893af"
+	testAccountName   = "WackyJacky101"
+	testAccountID2    = "account.2f6161f9becd4f8d9bcac25c5f049be8"
+	testAccountName2  = "Lecuma46"
+	testSeasonID      = "division.bro.official.pc-2018-06"
+	testMatchID       = "9c8ca51a-ee05-4ca0-8415-d59f2605639b"
+	testTournamentID  = "eu-pgs20"
+	testTelemetryFile = "testdata/telemetry.json"
+	testTelemetryURL  = "https://telemetry-cdn.playbattlegrounds.com/bluehole-pubg/steam/2020/03/10/21/50/1de3f581-6319-11ea-96a5-ae06d0909089-telemetry.json"
+
+	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
+	// Не касается Matches() и Status().
+	pause = time.Second * 8
+)
