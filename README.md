@@ -8,6 +8,7 @@
   - [Table of Contents](#table-of-contents)
   - [Getting Started](#getting-started)
   - [Usage Example](#usage-example)
+  - [Tests](#tests)
   - [Documentation](#documentation)
 
 ## Getting Started
@@ -54,6 +55,11 @@ for _, t := range tournaments.Data {
 ```
 
 See the example of using telemetry in the `telemetry_test.go`.
+
+## Tests
+```shell
+pause=true APIKEY=[…] go test
+```
 
 ## Documentation
 
