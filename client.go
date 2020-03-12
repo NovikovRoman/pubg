@@ -1,14 +1,16 @@
 package pubg
 
 import (
+	"compress/gzip"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 )
 
 const (
-	apiPointPath = "https://api.pubg.com"
+	apiPointPath   = "https://api.pubg.com"
 	layoutDateTime = "2006-01-02T15:04:05.9Z"
 )
 
@@ -34,6 +36,7 @@ func (c Client) requestGET(platform Platform, u string) (body []byte, err error)
 	req, _ := http.NewRequest("GET", u, nil)
 	req.Header.Set("Authorization", "Bearer "+c.apikey)
 	req.Header.Set("Accept", "application/vnd.api+json")
+	req.Header.Add("Accept-Encoding", "gzip")
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
 		return
@@ -57,7 +60,21 @@ func (c Client) getBytes(resp *http.Response) (body []byte, err error) {
 		}
 	}()
 
-	body, err = ioutil.ReadAll(resp.Body)
+	var reader io.ReadCloser
+	switch resp.Header.Get("Content-Encoding") {
+	case "gzip":
+		reader, err = gzip.NewReader(resp.Body)
+		defer func() {
+			if derr := reader.Close(); derr != nil {
+				err = derr
+			}
+		}()
+
+	default:
+		reader = resp.Body
+	}
+
+	body, err = ioutil.ReadAll(reader)
 	return
 }
 
