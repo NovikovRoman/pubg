@@ -8,6 +8,15 @@ func (p Platform) String() string {
 	return p.code
 }
 
+func (p Platform) IsEmpty() bool {
+	return p.code == ""
+}
+
+// Empty
+func EmptyPlatform() Platform {
+	return Platform{code: ""}
+}
+
 // Steam
 func SteamPlatform() Platform {
 	return Platform{code: "steam"}

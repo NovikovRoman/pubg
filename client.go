@@ -27,7 +27,7 @@ func NewClient(apikey string) Client {
 }
 
 func (c Client) requestGET(platform Platform, u string) (body []byte, err error) {
-	if platform.code == "" {
+	if platform.IsEmpty() {
 		u = fmt.Sprintf("%s%s", apiPointPath, u)
 	} else {
 		u = fmt.Sprintf("%s/shards/%s%s", apiPointPath, platform, u)
