@@ -14,7 +14,7 @@ func TestClient_Seasons(t *testing.T) {
 	require.True(t, len(seasons.Data) > 0)
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }
@@ -30,7 +30,7 @@ func TestClient_SeasonStatsPlayer(t *testing.T) {
 	require.Equal(t, stats.Data.Relationships.Season.Data.ID, testSeasonID)
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }
@@ -52,7 +52,7 @@ func TestClient_SeasonStatsPlayers(t *testing.T) {
 	}
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }

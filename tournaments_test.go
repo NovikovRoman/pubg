@@ -19,7 +19,7 @@ func TestClient_Tournaments(t *testing.T) {
 	require.False(t, tournaments.Data[0].Attributes.CreatedAt.IsZero())
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }
@@ -35,7 +35,7 @@ func TestClient_Tournament(t *testing.T) {
 	require.False(t, tournament.Included[0].Attributes.CreatedAt.IsZero())
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }

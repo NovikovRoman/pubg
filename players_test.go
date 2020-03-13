@@ -15,7 +15,7 @@ func TestClient_Player(t *testing.T) {
 	require.True(t, player.Data.Attributes.Name != "")
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }
@@ -42,7 +42,7 @@ func TestClient_PlayersByNames(t *testing.T) {
 	}
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }
@@ -68,7 +68,7 @@ func TestClient_PlayersByIDs(t *testing.T) {
 	}
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }

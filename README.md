@@ -57,8 +57,9 @@ for _, t := range tournaments.Data {
 See the example of using telemetry in the `telemetry_test.go`.
 
 ## Tests
+
 ```shell
-pause=true [PROXY=…] APIKEY=… go test
+PAUSE=true [PROXY=…] APIKEY=… go test
 ```
 
 ## Documentation

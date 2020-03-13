@@ -17,7 +17,7 @@ func TestClient_WeaponMastery(t *testing.T) {
 	require.True(t, len(weaponMastery.Data.Attributes.WeaponSummaries) > 0)
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }

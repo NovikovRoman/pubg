@@ -20,7 +20,7 @@ func TestClient_Leaderboards(t *testing.T) {
 	require.True(t, len(leaderboards.Included) > 0)
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("pause") != "" {
+	if os.Getenv("PAUSE") != "" {
 		time.Sleep(pause)
 	}
 }
