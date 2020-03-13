@@ -37,7 +37,7 @@ func TestClient_SeasonStatsPlayer(t *testing.T) {
 
 func TestClient_SeasonStatsPlayers(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	stats, err := c.SeasonStatsPlayers(SteamPlatform, testSeasonID, DuoGameMode(), testAccountID, testAccountID2)
+	stats, err := c.SeasonStatsPlayers(SteamPlatform, testSeasonID, DuoMode, testAccountID, testAccountID2)
 	require.Nil(t, err)
 	require.Len(t, stats.Data, 2)
 

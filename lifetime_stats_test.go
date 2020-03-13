@@ -24,7 +24,7 @@ func TestClient_LifetimeStatsPlayer(t *testing.T) {
 
 func TestClient_LifetimeStatsPlayers(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	stats, err := c.LifetimeStatsPlayers(SteamPlatform, DuoGameMode(), testAccountID, testAccountID2)
+	stats, err := c.LifetimeStatsPlayers(SteamPlatform, DuoMode, testAccountID, testAccountID2)
 	require.Nil(t, err)
 	require.Len(t, stats.Data, 2)
 

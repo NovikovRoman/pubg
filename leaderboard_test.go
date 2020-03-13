@@ -9,11 +9,11 @@ import (
 
 func TestClient_Leaderboards(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	gm := DuoGameMode()
-	leaderboards, err := c.Leaderboards(SteamPlatform, testSeasonID, gm, 1)
+
+	leaderboards, err := c.Leaderboards(SteamPlatform, testSeasonID, DuoMode, 1)
 	require.Nil(t, err)
 
-	require.Equal(t, leaderboards.Data.Attributes.GameMode, gm.String())
+	require.Equal(t, leaderboards.Data.Attributes.GameMode, DuoMode)
 	require.Equal(t, leaderboards.Data.Attributes.ShardId, SteamPlatform)
 
 	require.True(t, len(leaderboards.Data.Relationships.Players.Data) > 0)
