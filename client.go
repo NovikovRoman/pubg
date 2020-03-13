@@ -3,6 +3,7 @@ package pubg
 import (
 	"compress/gzip"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -27,6 +28,11 @@ func NewClient(apikey string) Client {
 }
 
 func (c Client) requestGET(platform Platform, u string) (body []byte, err error) {
+	if !platform.IsValid() {
+		err = errors.New("Unknown platform. ")
+		return
+	}
+
 	if platform.IsEmpty() {
 		u = fmt.Sprintf("%s%s", apiPointPath, u)
 	} else {
