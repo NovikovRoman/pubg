@@ -8,7 +8,7 @@ import (
 )
 
 func TestClient_Leaderboards(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 
 	leaderboards, err := c.Leaderboards(SteamPlatform, testSeasonID, DuoMode, 1)
 	require.Nil(t, err)

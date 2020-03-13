@@ -1,8 +1,6 @@
 package pubg
 
-import "net/http"
-
 func (c Client) Status() bool {
-	resp, _ := http.Get(apiPointPath + "/status")
-	return resp.StatusCode == 200
+	_, statusCode, err := c.requestGET(EmptyPlatform, "/status")
+	return err == nil && statusCode == 200
 }

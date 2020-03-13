@@ -22,7 +22,7 @@ go get github.com/NovikovRoman/pubg
 ## Usage Example
 
 ```go
-pubgClient := pubg.NewClient(apikey)
+pubgClient := pubg.NewClient(apikey, nil)
 
 if !pubgClient.Status() {
 	log.Fatalln("PUBG API not working.")
@@ -58,7 +58,7 @@ See the example of using telemetry in the `telemetry_test.go`.
 
 ## Tests
 ```shell
-pause=true APIKEY=[…] go test
+pause=true [PROXY=…] APIKEY=… go test
 ```
 
 ## Documentation

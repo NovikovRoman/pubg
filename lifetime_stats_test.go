@@ -8,7 +8,7 @@ import (
 )
 
 func TestClient_LifetimeStatsPlayer(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	stats, err := c.LifetimeStatsPlayer(SteamPlatform, testAccountID)
 	require.Nil(t, err)
 	require.True(t, len(stats.Data.Attributes.GameModeStats) > 0)
@@ -23,7 +23,7 @@ func TestClient_LifetimeStatsPlayer(t *testing.T) {
 }
 
 func TestClient_LifetimeStatsPlayers(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	stats, err := c.LifetimeStatsPlayers(SteamPlatform, DuoMode, testAccountID, testAccountID2)
 	require.Nil(t, err)
 	require.Len(t, stats.Data, 2)

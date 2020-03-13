@@ -78,7 +78,8 @@ func (c Client) Leaderboards(platform Platform, seasonID string, gameMode GameMo
 		page = 0
 	}
 
-	b, err := c.requestGET(platform, fmt.Sprintf("/leaderboards/%s/%s?page[number]=%d", seasonID, gameMode, page))
+	b, _, err := c.requestGET(platform,
+		fmt.Sprintf("/leaderboards/%s/%s?page[number]=%d", seasonID, gameMode, page))
 	if err != nil {
 		return
 	}

@@ -176,7 +176,7 @@ type asset struct {
 
 // Get a single match.
 func (c Client) Matches(platform Platform, matchID string) (matches *Matches, err error) {
-	b, err := c.requestGET(platform, fmt.Sprintf("/matches/%s", matchID))
+	b, _, err := c.requestGET(platform, fmt.Sprintf("/matches/%s", matchID))
 	if err != nil {
 		return
 	}

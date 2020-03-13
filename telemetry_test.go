@@ -9,7 +9,7 @@ import (
 )
 
 func TestClient_NewTelemetryFromURL(t *testing.T) {
-	tm, err := NewTelemetryFromURL(testTelemetryURL)
+	tm, err := NewTelemetryFromURL(testTelemetryURL, nil)
 	require.Nil(t, err)
 
 	for {

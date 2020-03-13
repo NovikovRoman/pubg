@@ -7,7 +7,7 @@ import (
 )
 
 func TestClient_Matches(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	matches, err := c.Matches(SteamPlatform, testMatchID)
 	require.Nil(t, err)
 

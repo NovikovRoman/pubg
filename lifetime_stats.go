@@ -19,7 +19,7 @@ type LifetimeStatsPlayers struct {
 
 // Get lifetime stats for a single player.
 func (c Client) LifetimeStatsPlayer(platform Platform, accountID string) (stats *LifetimeStatsPlayer, err error) {
-	b, err := c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/lifetime", accountID))
+	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/lifetime", accountID))
 	if err != nil {
 		return
 	}
@@ -41,7 +41,8 @@ func (c Client) LifetimeStatsPlayers(platform Platform, gameMode GameMode, accou
 		return
 	}
 
-	b, err := c.requestGET(platform, fmt.Sprintf("/seasons/lifetime/gameMode/%s/players?filter[playerIds]=%s", gameMode, strings.Join(accountID, ",")))
+	b, _, err := c.requestGET(platform,
+		fmt.Sprintf("/seasons/lifetime/gameMode/%s/players?filter[playerIds]=%s", gameMode, strings.Join(accountID, ",")))
 	if err != nil {
 		return
 	}

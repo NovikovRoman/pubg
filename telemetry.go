@@ -34,14 +34,21 @@ func NewTelemetryFromFile(filename string) (telemetry Telemetry, err error) {
 	return
 }
 
-func NewTelemetryFromURL(url string) (telemetry Telemetry, err error) {
+func NewTelemetryFromURL(url string, transport *http.Transport) (telemetry Telemetry, err error) {
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return
 	}
 
 	request.Header.Add("Accept-Encoding", "gzip")
-	client := new(http.Client)
+
+	if transport == nil {
+		transport = &http.Transport{}
+	}
+
+	client := http.Client{
+		Transport: transport,
+	}
 
 	resp, err := client.Do(request)
 	if err != nil {

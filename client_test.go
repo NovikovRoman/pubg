@@ -1,6 +1,13 @@
 package pubg
 
-import "time"
+import (
+	"github.com/stretchr/testify/require"
+	"net/http"
+	"net/url"
+	"os"
+	"testing"
+	"time"
+)
 
 const (
 	testAccountID     = "account.c0e530e9b7244b358def282782f893af"
@@ -17,3 +24,22 @@ const (
 	// Не касается Matches() и Status().
 	pause = time.Second * 8
 )
+
+func TestNewClient(t *testing.T) {
+	if os.Getenv("PROXY") == "" {
+		return
+	}
+
+	proxyURL, err := url.Parse(os.Getenv("PROXY"))
+	require.Nil(t, err)
+
+	transport := &http.Transport{
+		Proxy: http.ProxyURL(proxyURL),
+	}
+	c := NewClient(os.Getenv("APIKEY"), transport)
+	require.True(t, c.Status())
+
+	m, err := c.Matches(SteamPlatform, testMatchID)
+	require.Nil(t, err)
+	require.Equal(t, m.Data.ID, testMatchID)
+}

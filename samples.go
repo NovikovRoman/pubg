@@ -52,7 +52,7 @@ func (c Client) Samples(platform Platform, start time.Time) (samples *Samples, e
 		t = start.Format("2006-01-02T15:04:05Z")
 	}
 
-	b, err := c.requestGET(platform, fmt.Sprintf("/samples?filter[createdAt-start]=%s", t))
+	b, _, err := c.requestGET(platform, fmt.Sprintf("/samples?filter[createdAt-start]=%s", t))
 	if err != nil {
 		return
 	}

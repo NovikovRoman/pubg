@@ -20,14 +20,20 @@ type Client struct {
 	apikey     string
 }
 
-func NewClient(apikey string) Client {
+func NewClient(apikey string, transport *http.Transport) Client {
+	if transport == nil {
+		transport = &http.Transport{}
+	}
+
 	return Client{
-		httpClient: http.Client{},
-		apikey:     apikey,
+		httpClient: http.Client{
+			Transport: transport,
+		},
+		apikey: apikey,
 	}
 }
 
-func (c Client) requestGET(platform Platform, u string) (body []byte, err error) {
+func (c Client) requestGET(platform Platform, u string) (body []byte, statusCode int, err error) {
 	if !platform.IsValid() {
 		err = errors.New("Unknown platform. ")
 		return
@@ -48,13 +54,14 @@ func (c Client) requestGET(platform Platform, u string) (body []byte, err error)
 		return
 	}
 
+	statusCode = resp.StatusCode
 	body, err = c.getBytes(resp)
 	if err != nil {
 		return
 	}
 
-	if resp.StatusCode != 200 {
-		err = c.handlerErrorResponse(resp.StatusCode, body)
+	if statusCode != 200 {
+		err = c.handlerErrorResponse(statusCode, body)
 	}
 	return
 }

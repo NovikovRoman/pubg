@@ -7,6 +7,6 @@ import (
 )
 
 func Test_ClientStatus(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	require.True(t, c.Status())
 }

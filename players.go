@@ -49,7 +49,7 @@ type playerData struct {
 
 // Get a single player.
 func (c Client) Player(platform Platform, accountID string) (player *Player, err error) {
-	b, err := c.requestGET(platform, fmt.Sprintf("/players/%s", accountID))
+	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s", accountID))
 	if err != nil {
 		return
 	}
@@ -66,7 +66,7 @@ func (c Client) PlayersByIDs(platform Platform, accountID ...string) (players *P
 		return
 	}
 
-	b, err := c.requestGET(platform,
+	b, _, err := c.requestGET(platform,
 		fmt.Sprintf("/players?filter[playerIds]=%s", strings.Join(accountID, ",")))
 	if err != nil {
 		return
@@ -84,7 +84,7 @@ func (c Client) PlayersByNames(platform Platform, name ...string) (players *Play
 		return
 	}
 
-	b, err := c.requestGET(platform, fmt.Sprintf("/players?filter[playerNames]=%s", strings.Join(name, ",")))
+	b, _, err := c.requestGET(platform, fmt.Sprintf("/players?filter[playerNames]=%s", strings.Join(name, ",")))
 	if err != nil {
 		return
 	}

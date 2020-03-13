@@ -29,7 +29,7 @@ type WeaponMastery struct {
 
 // Get weapon mastery information for a single player.
 func (c Client) WeaponMastery(platform Platform, accountID string) (weaponMastery *WeaponMastery, err error) {
-	b, err := c.requestGET(platform, fmt.Sprintf("/players/%s/weapon_mastery", accountID))
+	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/weapon_mastery", accountID))
 	if err != nil {
 		return
 	}

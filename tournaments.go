@@ -51,7 +51,7 @@ type Tournament struct {
 
 // Get information for a single tournament.
 func (c Client) Tournament(tournamentID string) (tournament *Tournament, err error) {
-	b, err := c.requestGET(EmptyPlatform, fmt.Sprintf("/tournaments/%s", tournamentID))
+	b, _, err := c.requestGET(EmptyPlatform, fmt.Sprintf("/tournaments/%s", tournamentID))
 	if err != nil {
 		return
 	}
@@ -70,7 +70,7 @@ func (c Client) Tournament(tournamentID string) (tournament *Tournament, err err
 
 // Get the list of available tournaments.
 func (c Client) Tournaments() (tournaments *Tournaments, err error) {
-	b, err := c.requestGET(EmptyPlatform, "/tournaments")
+	b, _, err := c.requestGET(EmptyPlatform, "/tournaments")
 	if err != nil {
 		return
 	}

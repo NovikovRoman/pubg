@@ -8,7 +8,7 @@ import (
 )
 
 func TestClient_WeaponMastery(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	weaponMastery, err := c.WeaponMastery(SteamPlatform, testAccountID)
 	require.Nil(t, err)
 

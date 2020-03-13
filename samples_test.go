@@ -8,7 +8,7 @@ import (
 )
 
 func TestClient_Samples(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	samples, err := c.Samples(SteamPlatform, time.Now().Add(-time.Hour*48))
 	require.Nil(t, err)
 

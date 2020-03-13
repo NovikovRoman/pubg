@@ -8,7 +8,7 @@ import (
 )
 
 func TestClient_Tournaments(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	tournaments, err := c.Tournaments()
 
 	require.Nil(t, err)
@@ -25,7 +25,7 @@ func TestClient_Tournaments(t *testing.T) {
 }
 
 func TestClient_Tournament(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"))
+	c := NewClient(os.Getenv("APIKEY"), nil)
 	tournament, err := c.Tournament(testTournamentID)
 	require.Nil(t, err)
 
