@@ -9,8 +9,7 @@ import (
 
 func TestClient_Seasons(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
-	seasons, err := c.Seasons(pSteam)
+	seasons, err := c.Seasons(SteamPlatform)
 	require.Nil(t, err)
 	require.True(t, len(seasons.Data) > 0)
 
@@ -22,8 +21,7 @@ func TestClient_Seasons(t *testing.T) {
 
 func TestClient_SeasonStatsPlayer(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
-	stats, err := c.SeasonStatsPlayer(pSteam, testSeasonID, testAccountID)
+	stats, err := c.SeasonStatsPlayer(SteamPlatform, testSeasonID, testAccountID)
 	require.Nil(t, err)
 	require.True(t, len(stats.Data.Attributes.GameModeStats) > 0)
 
@@ -39,8 +37,7 @@ func TestClient_SeasonStatsPlayer(t *testing.T) {
 
 func TestClient_SeasonStatsPlayers(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
-	stats, err := c.SeasonStatsPlayers(pSteam, testSeasonID, DuoGameMode(), testAccountID, testAccountID2)
+	stats, err := c.SeasonStatsPlayers(SteamPlatform, testSeasonID, DuoGameMode(), testAccountID, testAccountID2)
 	require.Nil(t, err)
 	require.Len(t, stats.Data, 2)
 

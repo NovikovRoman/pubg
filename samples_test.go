@@ -9,11 +9,10 @@ import (
 
 func TestClient_Samples(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
-	samples, err := c.Samples(pSteam, time.Now().Add(-time.Hour*48))
+	samples, err := c.Samples(SteamPlatform, time.Now().Add(-time.Hour*48))
 	require.Nil(t, err)
 
-	require.Equal(t, samples.Data.Attributes.ShardId, pSteam.String())
+	require.Equal(t, samples.Data.Attributes.ShardId, SteamPlatform)
 	require.Equal(t, samples.Data.Type, "sample")
 	require.True(t, len(samples.Data.Relationships.Matches.Data) > 0)
 

@@ -9,8 +9,7 @@ import (
 
 func TestClient_Player(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
-	player, err := c.Player(pSteam, testAccountID)
+	player, err := c.Player(SteamPlatform, testAccountID)
 	require.Nil(t, err)
 	require.True(t, len(player.Data.Relationships.Matches.Data) > 0)
 	require.True(t, player.Data.Attributes.Name != "")
@@ -23,9 +22,8 @@ func TestClient_Player(t *testing.T) {
 
 func TestClient_PlayersByNames(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
 	names := []string{testAccountName, testAccountName2}
-	players, err := c.PlayersByNames(pSteam, names...)
+	players, err := c.PlayersByNames(SteamPlatform, names...)
 	require.Nil(t, err)
 	require.Len(t, players.Data, 2)
 
@@ -51,8 +49,7 @@ func TestClient_PlayersByNames(t *testing.T) {
 
 func TestClient_PlayersByIDs(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
-	players, err := c.PlayersByIDs(pSteam, testAccountID, testAccountID2)
+	players, err := c.PlayersByIDs(SteamPlatform, testAccountID, testAccountID2)
 	require.Nil(t, err)
 	require.Len(t, players.Data, 2)
 

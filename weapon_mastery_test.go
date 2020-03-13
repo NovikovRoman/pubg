@@ -9,11 +9,10 @@ import (
 
 func TestClient_WeaponMastery(t *testing.T) {
 	c := NewClient(os.Getenv("APIKEY"))
-	pSteam := SteamPlatform()
-	weaponMastery, err := c.WeaponMastery(pSteam, testAccountID)
+	weaponMastery, err := c.WeaponMastery(SteamPlatform, testAccountID)
 	require.Nil(t, err)
 
-	require.Equal(t, weaponMastery.Data.Attributes.Platform, SteamPlatform().String())
+	require.Equal(t, weaponMastery.Data.Attributes.Platform, SteamPlatform)
 	require.Equal(t, weaponMastery.Data.ID, testAccountID)
 	require.True(t, len(weaponMastery.Data.Attributes.WeaponSummaries) > 0)
 

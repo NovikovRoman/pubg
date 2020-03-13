@@ -6,31 +6,32 @@ import (
 )
 
 func TestClient_Platform(t *testing.T) {
-	p := EmptyPlatform()
+	var p Platform
+	p = EmptyPlatform
 	require.True(t, p.IsEmpty())
-	require.Equal(t, p.String(), "")
+	require.Equal(t, string(p), EmptyPlatform)
 
-	p = SteamPlatform()
+	p = SteamPlatform
 	require.False(t, p.IsEmpty())
-	require.Equal(t, p.String(), "steam")
+	require.Equal(t, string(p), "steam")
 
-	p = PsnPlatform()
+	p = PsnPlatform
 	require.False(t, p.IsEmpty())
-	require.Equal(t, p.String(), "psn")
+	require.Equal(t, string(p), "psn")
 
-	p = XboxPlatform()
+	p = XboxPlatform
 	require.False(t, p.IsEmpty())
-	require.Equal(t, p.String(), "xbox")
+	require.Equal(t, string(p), "xbox")
 
-	p = KakaoPlatform()
+	p = KakaoPlatform
 	require.False(t, p.IsEmpty())
-	require.Equal(t, p.String(), "kakao")
+	require.Equal(t, string(p), "kakao")
 
-	p = ConsolePlatform()
+	p = ConsolePlatform
 	require.False(t, p.IsEmpty())
-	require.Equal(t, p.String(), "console")
+	require.Equal(t, string(p), "console")
 
-	p = TournamentPlatform()
+	p = TournamentPlatform
 	require.False(t, p.IsEmpty())
-	require.Equal(t, p.String(), "tournament")
+	require.Equal(t, string(p), "tournament")
 }
