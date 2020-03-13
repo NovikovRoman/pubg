@@ -60,6 +60,11 @@ func (c Client) SeasonStatsPlayer(platform Platform, seasonID, accountID string)
 
 // Get season information for up to 10 players.
 func (c Client) SeasonStatsPlayers(platform Platform, seasonID string, gameMode GameMode, accountID ...string) (stats *SeasonStatsPlayers, err error) {
+	if !gameMode.IsValid() {
+		err = errors.New("Unknown game mode. ")
+		return
+	}
+
 	if len(accountID) == 0 || len(accountID) > 10 {
 		err = errors.New("You must specify 1 to 10 players. ")
 		return

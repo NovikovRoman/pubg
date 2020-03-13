@@ -2,8 +2,10 @@ package pubg
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 )
+
 // Leaderboards are updated every 2 hours
 type Leaderboard struct {
 	Data struct {
@@ -66,6 +68,11 @@ type Leaderboard struct {
 
 // Get the leaderboard for a game mode.
 func (c Client) Leaderboards(platform Platform, seasonID string, gameMode GameMode, page int) (leaderboard *Leaderboard, err error) {
+	if !gameMode.IsValid() {
+		err = errors.New("Unknown game mode. ")
+		return
+	}
+
 	page--
 	if page < 0 {
 		page = 0

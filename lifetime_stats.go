@@ -31,6 +31,11 @@ func (c Client) LifetimeStatsPlayer(platform Platform, accountID string) (stats 
 
 // Get lifetime stats for up to 10 players.
 func (c Client) LifetimeStatsPlayers(platform Platform, gameMode GameMode, accountID ...string) (stats *LifetimeStatsPlayers, err error) {
+	if !gameMode.IsValid() {
+		err = errors.New("Unknown game mode. ")
+		return
+	}
+
 	if len(accountID) == 0 || len(accountID) > 10 {
 		err = errors.New("You must specify 1 to 10 players. ")
 		return
