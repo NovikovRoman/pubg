@@ -16,17 +16,17 @@ const (
 )
 
 type Client struct {
-	httpClient http.Client
+	httpClient *http.Client
 	apikey     string
 }
 
-func NewClient(apikey string, transport *http.Transport) Client {
+func NewClient(apikey string, transport *http.Transport) *Client {
 	if transport == nil {
 		transport = &http.Transport{}
 	}
 
-	return Client{
-		httpClient: http.Client{
+	return &Client{
+		httpClient: &http.Client{
 			Transport: transport,
 		},
 		apikey: apikey,
