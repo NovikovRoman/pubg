@@ -116,31 +116,31 @@ func (c Client) handlerErrorResponse(statusCode int, body []byte) (err error) {
 
 	switch statusCode {
 	case 400:
-		return ErrBadRequest{
+		return &ErrBadRequest{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
 	case 401:
-		return ErrUnauthorized{
+		return &ErrUnauthorized{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
 	case 404:
-		return ErrNotFound{
+		return &ErrNotFound{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
 	case 415:
-		return ErrUnsupportedMediaType{
+		return &ErrUnsupportedMediaType{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
 	case 429:
-		return ErrTooManyRequest{}
+		return &ErrTooManyRequest{}
 	}
 
 	err = fmt.Errorf("StatusCode: %d. Body: %s ", statusCode, string(body))
