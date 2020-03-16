@@ -16,16 +16,16 @@ type Telemetry struct {
 	Raw   []json.RawMessage
 }
 
-func NewTelemetryFromBytes(b []byte) (telemetry Telemetry, err error) {
+func NewTelemetryFromBytes(b []byte) (telemetry *Telemetry, err error) {
 	var raw []json.RawMessage
 	err = json.Unmarshal(b, &raw)
-	telemetry = Telemetry{
+	telemetry = &Telemetry{
 		Raw: raw,
 	}
 	return
 }
 
-func NewTelemetryFromFile(filename string) (telemetry Telemetry, err error) {
+func NewTelemetryFromFile(filename string) (telemetry *Telemetry, err error) {
 	var b []byte
 	if b, err = ioutil.ReadFile(filename); err != nil {
 		return
@@ -34,7 +34,7 @@ func NewTelemetryFromFile(filename string) (telemetry Telemetry, err error) {
 	return
 }
 
-func NewTelemetryFromURL(url string, transport *http.Transport) (telemetry Telemetry, err error) {
+func NewTelemetryFromURL(url string, transport *http.Transport) (telemetry *Telemetry, err error) {
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return
