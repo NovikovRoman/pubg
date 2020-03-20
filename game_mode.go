@@ -3,17 +3,17 @@ package pubg
 import "errors"
 
 const (
-	// Solo
+	// SoloMode - Solo
 	SoloMode = "solo"
-	// Solo FPP
+	// SoloFPPMode - Solo FPP
 	SoloFPPMode = "solo-fpp"
-	// Duo
+	// DuoMode - Duo
 	DuoMode = "duo"
-	// Duo FPP
+	// DuoFPPMode - Duo FPP
 	DuoFPPMode = "duo-fpp"
-	// Squad
+	// SquadMode - Squad
 	SquadMode = "squad"
-	// Squad FPP
+	// SquadFPPMode - Squad FPP
 	SquadFPPMode = "squad-fpp"
 )
 

@@ -5,17 +5,17 @@ import "errors"
 const (
 	// EmptyPlatform the platform is not specified
 	EmptyPlatform = ""
-	// Steam
+	// SteamPlatform - Steam
 	SteamPlatform = "steam"
-	// PS4
+	// PsnPlatform - PS4
 	PsnPlatform = "psn"
-	// Xbox
+	// XboxPlatform - Xbox
 	XboxPlatform = "xbox"
-	// Kakao
+	// KakaoPlatform - Kakao
 	KakaoPlatform = "kakao"
-	// Console
+	// ConsolePlatform - Console
 	ConsolePlatform = "console"
-	// Tournament
+	// TournamentPlatform - Tournament
 	TournamentPlatform = "tournament"
 )
 
