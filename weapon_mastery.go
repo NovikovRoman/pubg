@@ -6,6 +6,8 @@ import (
 )
 
 // Weapon Mastery contains weapon summaries for the lifetime of a player.
+
+// WeaponMastery structure.
 type WeaponMastery struct {
 	Data struct {
 		// Identifier for this object type ("weaponMasterySummary")

@@ -12,6 +12,7 @@ type LifetimeStatsPlayer struct {
 	Data  statistics `json:"data"`
 	Links links      `json:"links"`
 }
+
 // LifetimeStatsPlayers structure.
 type LifetimeStatsPlayers struct {
 	Data  []statistics `json:"data"`

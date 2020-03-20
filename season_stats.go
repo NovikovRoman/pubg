@@ -32,11 +32,13 @@ type Seasons struct {
 
 	Links links `json:"links"`
 }
+
 // SeasonStatsPlayer structure.
 type SeasonStatsPlayer struct {
 	Data  statistics `json:"data"`
 	Links links      `json:"links"`
 }
+
 // SeasonStatsPlayers structure.
 type SeasonStatsPlayers struct {
 	Data  []statistics `json:"data"`

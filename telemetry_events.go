@@ -748,7 +748,7 @@ type LogWheelDestroy struct {
 	DamageCauserName   string                   `json:"damageCauserName"`
 }
 
-// NewLogArmorDestroy create new LogArmorDestroy structure.
+// NewLogWheelDestroy create new LogWheelDestroy structure.
 func NewLogWheelDestroy(raw json.RawMessage) (l *LogWheelDestroy, err error) {
 	l = &LogWheelDestroy{}
 	if err = json.Unmarshal(raw, l); err == nil {

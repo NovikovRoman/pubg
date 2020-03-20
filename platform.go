@@ -3,15 +3,23 @@ package pubg
 import "errors"
 
 const (
-	EmptyPlatform      = ""
-	SteamPlatform      = "steam"
-	PsnPlatform        = "psn"
-	XboxPlatform       = "xbox"
-	KakaoPlatform      = "kakao"
-	ConsolePlatform    = "console"
+	// EmptyPlatform the platform is not specified
+	EmptyPlatform = ""
+	// Steam
+	SteamPlatform = "steam"
+	// PS4
+	PsnPlatform = "psn"
+	// Xbox
+	XboxPlatform = "xbox"
+	// Kakao
+	KakaoPlatform = "kakao"
+	// Console
+	ConsolePlatform = "console"
+	// Tournament
 	TournamentPlatform = "tournament"
 )
 
+// Platform as string
 type Platform string
 
 // IsEmpty returns true if the platform is empty.
