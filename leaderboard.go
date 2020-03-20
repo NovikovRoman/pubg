@@ -6,7 +6,9 @@ import (
 	"fmt"
 )
 
-// Leaderboards are updated every 2 hours
+// Leaderboards are updated every 2 hours.
+
+// Leaderboard structure.
 type Leaderboard struct {
 	Data struct {
 		// Identifier for this object type ("leaderboard")
@@ -66,7 +68,7 @@ type Leaderboard struct {
 	Links links `json:"links"`
 }
 
-// Get the leaderboard for a game mode.
+// Leaderboards returns the leaderboard for a game mode.
 func (c Client) Leaderboards(platform Platform, seasonID string, gameMode GameMode, page int) (leaderboard *Leaderboard, err error) {
 	if !gameMode.IsValid() {
 		err = errors.New("Unknown game mode. ")

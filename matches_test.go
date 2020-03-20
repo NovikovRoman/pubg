@@ -2,13 +2,11 @@ package pubg
 
 import (
 	"github.com/stretchr/testify/require"
-	"os"
 	"testing"
 )
 
 func TestClient_Matches(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	matches, err := c.Matches(SteamPlatform, testMatchID)
+	matches, err := cTest.Matches(SteamPlatform, testMatchID)
 	require.Nil(t, err)
 
 	require.Equal(t, matches.Data.Attributes.ShardId, SteamPlatform)

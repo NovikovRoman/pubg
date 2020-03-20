@@ -154,7 +154,7 @@ type weaponSummary struct {
 	// All of the medals received for this weapon
 	Medals []struct {
 		// The name of the medal
-		MedalId string `json:"MedalId"`
+		MedalID string `json:"MedalId"`
 		// The number of times that the player received the medal
 		Count int `json:"Count"`
 	} `json:"Medals"`

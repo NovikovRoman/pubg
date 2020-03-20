@@ -14,15 +14,18 @@ const (
 
 type Platform string
 
+// IsEmpty returns true if the platform is empty.
 func (p Platform) IsEmpty() bool {
 	return p == EmptyPlatform
 }
 
+// IsValid returns true if the platform is valid.
 func (p Platform) IsValid() bool {
 	return p == EmptyPlatform || p == SteamPlatform || p == PsnPlatform || p == XboxPlatform ||
 		p == KakaoPlatform || p == ConsolePlatform || p == TournamentPlatform
 }
 
+// TransformToPlatform transforms a string into a Platform structure.
 func TransformToPlatform(name string) (platform Platform, err error) {
 	platform = EmptyPlatform
 

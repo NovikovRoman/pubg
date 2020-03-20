@@ -15,11 +15,14 @@ const (
 	layoutDateTime = "2006-01-02T15:04:05.9Z"
 )
 
+// Client structure.
 type Client struct {
 	httpClient *http.Client
 	apikey     string
 }
 
+// NewClient create new PUBG Client structure.
+// This structure will be used to acquire make API calls.
 func NewClient(apikey string, transport *http.Transport) *Client {
 	if transport == nil {
 		transport = &http.Transport{}
@@ -49,18 +52,17 @@ func (c Client) requestGET(platform Platform, u string) (body []byte, statusCode
 	req.Header.Set("Authorization", "Bearer "+c.apikey)
 	req.Header.Set("Accept", "application/vnd.api+json")
 	req.Header.Add("Accept-Encoding", "gzip")
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
+	var resp *http.Response
+	if resp, err = c.httpClient.Do(req); err != nil {
 		return
 	}
 
 	statusCode = resp.StatusCode
-	body, err = c.getBytes(resp)
-	if err != nil {
+	if body, err = c.getBytes(resp); err != nil {
 		return
 	}
 
-	if statusCode != 200 {
+	if statusCode != http.StatusOK {
 		err = c.handlerErrorResponse(statusCode, body)
 	}
 	return
@@ -115,31 +117,31 @@ func (c Client) handlerErrorResponse(statusCode int, body []byte) (err error) {
 	}
 
 	switch statusCode {
-	case 400:
+	case http.StatusBadRequest:
 		return &ErrBadRequest{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
-	case 401:
+	case http.StatusUnauthorized:
 		return &ErrUnauthorized{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
-	case 404:
+	case http.StatusNotFound:
 		return &ErrNotFound{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
-	case 415:
+	case http.StatusUnsupportedMediaType:
 		return &ErrUnsupportedMediaType{
 			title:  data.Errors[0].Title,
 			detail: data.Errors[0].Detail,
 		}
 
-	case 429:
+	case http.StatusTooManyRequests:
 		return &ErrTooManyRequest{}
 	}
 

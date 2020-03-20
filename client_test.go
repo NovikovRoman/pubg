@@ -6,7 +6,6 @@ import (
 	"net/url"
 	"os"
 	"testing"
-	"time"
 )
 
 const (
@@ -19,10 +18,6 @@ const (
 	testTournamentID  = "eu-pgs20"
 	testTelemetryFile = "testdata/telemetry.json"
 	testTelemetryURL  = "https://telemetry-cdn.playbattlegrounds.com/bluehole-pubg/steam/2020/03/10/21/50/1de3f581-6319-11ea-96a5-ae06d0909089-telemetry.json"
-
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	// Не касается Matches() и Status().
-	pause = time.Second * 8
 )
 
 func TestNewClient(t *testing.T) {

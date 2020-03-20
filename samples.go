@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// Samples structure.
 type Samples struct {
 	Data struct {
 		// Identifier for this object type ("sample")
@@ -18,9 +19,9 @@ type Samples struct {
 		Attributes struct {
 			CreatedAtRaw string    `json:"createdAt"`
 			CreatedAt    time.Time `json:"-"`
-			TitleId      string    `json:"titleId"`
+			TitleID      string    `json:"titleId"`
 			// Platform ID
-			ShardId string `json:"shardId"`
+			ShardID string `json:"shardId"`
 		} `json:"attributes"`
 
 		// Array:
@@ -32,7 +33,7 @@ type Samples struct {
 	} `json:"data"`
 }
 
-// Get a list of sample matches.
+// Samples returns a list of sample matches.
 //
 // The number of matches per shard may vary. Requests for samples need to be at least 24hrs in the past UTC time using
 // the `start` query parameter. The default if not specified is the latest sample.

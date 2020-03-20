@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// Tournaments structure.
 type Tournaments struct {
 	Data []struct {
 		// Identifier for this object type ("tournament")
@@ -22,6 +23,7 @@ type Tournaments struct {
 	Links links `json:"links"`
 }
 
+// Tournament structure.
 type Tournament struct {
 	Data struct {
 		// Identifier for this object type ("tournament")
@@ -49,7 +51,7 @@ type Tournament struct {
 	Links links `json:"links"`
 }
 
-// Get information for a single tournament.
+// Tournament returns information for a single tournament.
 func (c Client) Tournament(tournamentID string) (tournament *Tournament, err error) {
 	b, _, err := c.requestGET(EmptyPlatform, fmt.Sprintf("/tournaments/%s", tournamentID))
 	if err != nil {
@@ -68,7 +70,7 @@ func (c Client) Tournament(tournamentID string) (tournament *Tournament, err err
 	return
 }
 
-// Get the list of available tournaments.
+// Tournaments returns the list of available tournaments.
 func (c Client) Tournaments() (tournaments *Tournaments, err error) {
 	b, _, err := c.requestGET(EmptyPlatform, "/tournaments")
 	if err != nil {

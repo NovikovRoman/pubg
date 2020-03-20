@@ -14,11 +14,11 @@ type telemetryObjectBlueZoneCustomOptions struct {
 
 type telemetryObjectCharacter struct {
 	Name         string                  `json:"name"`
-	TeamId       int                     `json:"teamId"`
+	TeamID       int                     `json:"teamId"`
 	Health       float64                 `json:"health"`
 	Location     telemetryObjectLocation `json:"location"`
 	Ranking      int                     `json:"ranking"`
-	AccountId    string                  `json:"accountId"`
+	AccountID    string                  `json:"accountId"`
 	IsInBlueZone bool                    `json:"isInBlueZone"`
 	IsInRedZone  bool                    `json:"isInRedZone"`
 	Zone         []string                `json:"zone"`
@@ -47,9 +47,9 @@ type telemetryObjectCommon struct {
 type telemetryObjectGameResult struct {
 	Rank       int                  `json:"rank"`
 	GameResult string               `json:"gameResult"`
-	TeamId     int                  `json:"teamId"`
+	TeamID     int                  `json:"teamId"`
 	Stats      telemetryObjectStats `json:"stats"`
-	AccountId  string               `json:"accountId"`
+	AccountID  string               `json:"accountId"`
 }
 
 // Shows winning players only
@@ -74,15 +74,16 @@ type telemetryObjectGameState struct {
 }
 
 type telemetryObjectItem struct {
-	ItemId        string   `json:"itemId"`
+	ItemID        string   `json:"itemId"`
 	StackCount    int      `json:"stackCount"`
 	Category      string   `json:"category"`
 	SubCategory   string   `json:"subCategory"`
 	AttachedItems []string `json:"attachedItems"`
 }
 
+// ItemPackage structure.
 type ItemPackage struct {
-	ItemPackageId string                  `json:"itemPackageId"`
+	ItemPackageID string                  `json:"itemPackageId"`
 	Location      telemetryObjectLocation `json:"location"`
 	Items         []telemetryObjectItem   `json:"items"`
 }
@@ -113,8 +114,8 @@ type telemetryObjectStats struct {
 
 type telemetryObjectVehicle struct {
 	VehicleType     string  `json:"vehicleType"`
-	VehicleId       string  `json:"vehicleId"`
-	VehicleUniqueId int     `json:"vehicleUniqueId"`
+	VehicleID       string  `json:"vehicleId"`
+	VehicleUniqueID int     `json:"vehicleUniqueId"`
 	HealthPercent   float64 `json:"healthPercent"`
 	FeulPercent     float64 `json:"feulPercent"`
 	SeatIndex       int     `json:"seatIndex"`

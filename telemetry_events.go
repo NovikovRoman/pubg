@@ -11,9 +11,10 @@ type telemetryEvent struct {
 	Date    time.Time `json:"_"`
 }
 
+// LogArmorDestroy structure.
 type LogArmorDestroy struct {
 	telemetryEvent
-	AttackId           int                      `json:"attackId"`
+	AttackID           int                      `json:"attackId"`
 	Attacker           telemetryObjectCharacter `json:"attacker"`
 	Victim             telemetryObjectCharacter `json:"victim"`
 	DamageTypeCategory string                   `json:"damageTypeCategory"`
@@ -23,71 +24,76 @@ type LogArmorDestroy struct {
 	Distance           float64                  `json:"distance"`
 }
 
+// NewLogArmorDestroy create new LogArmorDestroy structure.
 func NewLogArmorDestroy(raw json.RawMessage) (l *LogArmorDestroy, err error) {
 	l = &LogArmorDestroy{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogBlackZoneEnded structure.
 type LogBlackZoneEnded struct {
 	telemetryEvent
 	Survivors []telemetryObjectCharacter `json:"survivors"`
 }
 
+// NewLogBlackZoneEnded create new LogBlackZoneEnded structure.
 func NewLogBlackZoneEnded(raw json.RawMessage) (l *LogBlackZoneEnded, err error) {
 	l = &LogBlackZoneEnded{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogCarePackageLand structure.
 type LogCarePackageLand struct {
 	telemetryEvent
 	ItemPackage ItemPackage `json:"itemPackage"`
 }
 
+// NewLogCarePackageLand create new LogCarePackageLand structure.
 func NewLogCarePackageLand(raw json.RawMessage) (l *LogCarePackageLand, err error) {
 	l = &LogCarePackageLand{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogCarePackageSpawn structure.
 type LogCarePackageSpawn struct {
 	telemetryEvent
 	ItemPackage ItemPackage `json:"itemPackage"`
 }
 
+// NewLogCarePackageSpawn create new LogCarePackageSpawn structure.
 func NewLogCarePackageSpawn(raw json.RawMessage) (l *LogCarePackageSpawn, err error) {
 	l = &LogCarePackageSpawn{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogGameStatePeriodic structure.
 type LogGameStatePeriodic struct {
 	telemetryEvent
 	GameState telemetryObjectGameState `json:"gameState"`
 }
 
+// NewLogGameStatePeriodic create new LogGameStatePeriodic structure.
 func NewLogGameStatePeriodic(raw json.RawMessage) (l *LogGameStatePeriodic, err error) {
 	l = &LogGameStatePeriodic{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogHeal structure.
 type LogHeal struct {
 	telemetryEvent
 	Character  telemetryObjectCharacter `json:"character"`
@@ -95,15 +101,16 @@ type LogHeal struct {
 	HealAmount float64                  `json:"healAmount"`
 }
 
+// NewLogHeal create new LogHeal structure.
 func NewLogHeal(raw json.RawMessage) (l *LogHeal, err error) {
 	l = &LogHeal{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemAttach structure.
 type LogItemAttach struct {
 	telemetryEvent
 	Character  telemetryObjectCharacter `json:"character"`
@@ -111,15 +118,16 @@ type LogItemAttach struct {
 	ChildItem  telemetryObjectItem      `json:"childItem"`
 }
 
+// NewLogItemAttach create new LogItemAttach structure.
 func NewLogItemAttach(raw json.RawMessage) (l *LogItemAttach, err error) {
 	l = &LogItemAttach{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemDetach structure.
 type LogItemDetach struct {
 	telemetryEvent
 	Character  telemetryObjectCharacter `json:"character"`
@@ -127,60 +135,64 @@ type LogItemDetach struct {
 	ChildItem  telemetryObjectItem      `json:"childItem"`
 }
 
+// NewLogItemDetach create new LogItemDetach structure.
 func NewLogItemDetach(raw json.RawMessage) (l *LogItemDetach, err error) {
 	l = &LogItemDetach{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemDrop structure.
 type LogItemDrop struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 	Item      telemetryObjectItem      `json:"item"`
 }
 
+// NewLogItemDrop create new LogItemDrop structure.
 func NewLogItemDrop(raw json.RawMessage) (l *LogItemDrop, err error) {
 	l = &LogItemDrop{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemEquip structure.
 type LogItemEquip struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 	Item      telemetryObjectItem      `json:"item"`
 }
 
+// NewLogItemEquip create new LogItemEquip structure.
 func NewLogItemEquip(raw json.RawMessage) (l *LogItemEquip, err error) {
 	l = &LogItemEquip{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemPickup structure.
 type LogItemPickup struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 	Item      telemetryObjectItem      `json:"item"`
 }
 
+// NewLogItemPickup create new LogItemPickup structure.
 func NewLogItemPickup(raw json.RawMessage) (l *LogItemPickup, err error) {
 	l = &LogItemPickup{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemPickupFromCarepackage structure.
 type LogItemPickupFromCarepackage struct {
 	telemetryEvent
 	Character           telemetryObjectCharacter `json:"character"`
@@ -188,15 +200,16 @@ type LogItemPickupFromCarepackage struct {
 	CarePackageUniqueId float64                  `json:"carePackageUniqueId"`
 }
 
+// NewLogItemPickupFromCarepackage create new LogItemPickupFromCarepackage structure.
 func NewLogItemPickupFromCarepackage(raw json.RawMessage) (l *LogItemPickupFromCarepackage, err error) {
 	l = &LogItemPickupFromCarepackage{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemPickupFromLootBox structure.
 type LogItemPickupFromLootBox struct {
 	telemetryEvent
 	Character        telemetryObjectCharacter `json:"character"`
@@ -205,45 +218,48 @@ type LogItemPickupFromLootBox struct {
 	CreatorAccountId string                   `json:"creatorAccountId"`
 }
 
+// NewLogItemPickupFromLootBox create new LogItemPickupFromLootBox structure.
 func NewLogItemPickupFromLootBox(raw json.RawMessage) (l *LogItemPickupFromLootBox, err error) {
 	l = &LogItemPickupFromLootBox{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemUnequip structure.
 type LogItemUnequip struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 	Item      telemetryObjectItem      `json:"item"`
 }
 
+// NewLogItemUnequip create new LogItemUnequip structure.
 func NewLogItemUnequip(raw json.RawMessage) (l *LogItemUnequip, err error) {
 	l = &LogItemUnequip{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogItemUse structure.
 type LogItemUse struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 	Item      telemetryObjectItem      `json:"item"`
 }
 
+// NewLogItemUse create new LogItemUse structure.
 func NewLogItemUse(raw json.RawMessage) (l *LogItemUse, err error) {
 	l = &LogItemUse{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogMatchDefinition structure.
 type LogMatchDefinition struct {
 	telemetryEvent
 	MatchId     string `json:"MatchId"`
@@ -251,15 +267,16 @@ type LogMatchDefinition struct {
 	SeasonState string `json:"SeasonState"`
 }
 
+// NewLogMatchDefinition create new LogMatchDefinition structure.
 func NewLogMatchDefinition(raw json.RawMessage) (l *LogMatchDefinition, err error) {
 	l = &LogMatchDefinition{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogMatchEnd structure.
 type LogMatchEnd struct {
 	telemetryEvent
 	Characters []telemetryObjectCharacter `json:"characters"`
@@ -267,15 +284,16 @@ type LogMatchEnd struct {
 	GameResultOnFinished telemetryObjectGameResultOnFinished `json:"gameResultOnFinished"`
 }
 
+// NewLogMatchEnd create new LogMatchEnd structure.
 func NewLogMatchEnd(raw json.RawMessage) (l *LogMatchEnd, err error) {
 	l = &LogMatchEnd{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogMatchStart structure.
 type LogMatchStart struct {
 	telemetryEvent
 	MapName                  string                                 `json:"mapName"`
@@ -289,16 +307,17 @@ type LogMatchStart struct {
 	BlueZoneCustomOptionsRaw string                                 `json:"blueZoneCustomOptions"`
 }
 
+// NewLogMatchStart create new LogMatchStart structure.
 func NewLogMatchStart(raw json.RawMessage) (l *LogMatchStart, err error) {
 	l = &LogMatchStart{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 		err = json.Unmarshal([]byte(l.BlueZoneCustomOptionsRaw), &l.BlueZoneCustomOptions)
 	}
 	return
 }
 
+// LogObjectDestroy structure.
 type LogObjectDestroy struct {
 	telemetryEvent
 	Character      telemetryObjectCharacter `json:"character"`
@@ -306,15 +325,16 @@ type LogObjectDestroy struct {
 	ObjectLocation telemetryObjectLocation  `json:"objectLocation"`
 }
 
+// NewLogObjectDestroy create new LogObjectDestroy structure.
 func NewLogObjectDestroy(raw json.RawMessage) (l *LogObjectDestroy, err error) {
 	l = &LogObjectDestroy{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogObjectInteraction structure.
 type LogObjectInteraction struct {
 	telemetryEvent
 	Character                telemetryObjectCharacter `json:"character"`
@@ -324,45 +344,48 @@ type LogObjectInteraction struct {
 	Common                   telemetryObjectCommon    `json:"common"`
 }
 
+// NewLogObjectInteraction create new LogObjectInteraction structure.
 func NewLogObjectInteraction(raw json.RawMessage) (l *LogObjectInteraction, err error) {
 	l = &LogObjectInteraction{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogParachuteLanding structure.
 type LogParachuteLanding struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 	Distance  float64                  `json:"distance"`
 }
 
+// NewLogParachuteLanding create new LogParachuteLanding structure.
 func NewLogParachuteLanding(raw json.RawMessage) (l *LogParachuteLanding, err error) {
 	l = &LogParachuteLanding{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPhaseChange structure.
 type LogPhaseChange struct {
 	telemetryEvent
 	Phase       int     `json:"phase"`
 	ElapsedTime float64 `json:"elapsedTime"`
 }
 
+// NewLogPhaseChange create new LogPhaseChange structure.
 func NewLogPhaseChange(raw json.RawMessage) (l *LogPhaseChange, err error) {
 	l = &LogPhaseChange{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerAttack structure.
 type LogPlayerAttack struct {
 	telemetryEvent
 	AttackId             int                      `json:"attackId"`
@@ -373,44 +396,47 @@ type LogPlayerAttack struct {
 	Vehicle              telemetryObjectVehicle   `json:"vehicle"`
 }
 
+// NewLogPlayerAttack create new LogPlayerAttack structure.
 func NewLogPlayerAttack(raw json.RawMessage) (l *LogPlayerAttack, err error) {
 	l = &LogPlayerAttack{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerCreate structure.
 type LogPlayerCreate struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 }
 
+// NewLogPlayerCreate create new LogPlayerCreate structure.
 func NewLogPlayerCreate(raw json.RawMessage) (l *LogPlayerCreate, err error) {
 	l = &LogPlayerCreate{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerDestroyBreachableWall structure.
 type LogPlayerDestroyBreachableWall struct {
 	telemetryEvent
 	Attacker telemetryObjectCharacter `json:"attacker"`
 	Weapon   telemetryObjectItem      `json:"weapon"`
 }
 
+// NewLogPlayerDestroyBreachableWall create new LogPlayerDestroyBreachableWall structure.
 func NewLogPlayerDestroyBreachableWall(raw json.RawMessage) (l *LogPlayerDestroyBreachableWall, err error) {
 	l = &LogPlayerDestroyBreachableWall{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerKill structure.
 type LogPlayerKill struct {
 	telemetryEvent
 	AttackId                   int                       `json:"attackId"`
@@ -429,43 +455,46 @@ type LogPlayerKill struct {
 	IsThroughPenetrableWall    bool                      `json:"isThroughPenetrableWall"`
 }
 
+// NewLogPlayerKill create new LogPlayerKill structure.
 func NewLogPlayerKill(raw json.RawMessage) (l *LogPlayerKill, err error) {
 	l = &LogPlayerKill{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerLogin structure.
 type LogPlayerLogin struct {
 	telemetryEvent
 	AccountId string `json:"accountId"`
 }
 
+// NewLogPlayerLogin create new LogPlayerLogin structure.
 func NewLogPlayerLogin(raw json.RawMessage) (l *LogPlayerLogin, err error) {
 	l = &LogPlayerLogin{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerLogout structure.
 type LogPlayerLogout struct {
 	telemetryEvent
 	AccountId string `json:"accountId"`
 }
 
+// NewLogPlayerLogout create new LogPlayerLogout structure.
 func NewLogPlayerLogout(raw json.RawMessage) (l *LogPlayerLogout, err error) {
 	l = &LogPlayerLogout{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerMakeGroggy structure.
 type LogPlayerMakeGroggy struct {
 	telemetryEvent
 	AttackId                   int                      `json:"attackId"`
@@ -483,15 +512,16 @@ type LogPlayerMakeGroggy struct {
 	IsThroughPenetrableWall    bool                     `json:"isThroughPenetrableWall"`
 }
 
+// NewLogPlayerMakeGroggy create new LogPlayerMakeGroggy structure.
 func NewLogPlayerMakeGroggy(raw json.RawMessage) (l *LogPlayerMakeGroggy, err error) {
 	l = &LogPlayerMakeGroggy{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerPosition structure.
 type LogPlayerPosition struct {
 	telemetryEvent
 	Character       telemetryObjectCharacter `json:"character"`
@@ -500,15 +530,16 @@ type LogPlayerPosition struct {
 	NumAlivePlayers int                      `json:"numAlivePlayers"`
 }
 
+// NewLogPlayerPosition create new LogPlayerPosition structure.
 func NewLogPlayerPosition(raw json.RawMessage) (l *LogPlayerPosition, err error) {
 	l = &LogPlayerPosition{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerRevive structure.
 type LogPlayerRevive struct {
 	telemetryEvent
 	Reviver telemetryObjectCharacter `json:"reviver"`
@@ -516,15 +547,16 @@ type LogPlayerRevive struct {
 	DBNOId  int                      `json:"dBNOId"`
 }
 
+// NewLogPlayerRevive create new LogPlayerRevive structure.
 func NewLogPlayerRevive(raw json.RawMessage) (l *LogPlayerRevive, err error) {
 	l = &LogPlayerRevive{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerTakeDamage structure.
 type LogPlayerTakeDamage struct {
 	telemetryEvent
 	AttackId           int                      `json:"attackId"`
@@ -538,15 +570,16 @@ type LogPlayerTakeDamage struct {
 	IsThroughPenetrableWall bool    `json:"isThroughPenetrableWall"`
 }
 
+// NewLogPlayerTakeDamage create new LogPlayerTakeDamage structure.
 func NewLogPlayerTakeDamage(raw json.RawMessage) (l *LogPlayerTakeDamage, err error) {
 	l = &LogPlayerTakeDamage{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogPlayerUseThrowable structure.
 type LogPlayerUseThrowable struct {
 	telemetryEvent
 	AttackId             int                      `json:"attackId"`
@@ -556,29 +589,31 @@ type LogPlayerUseThrowable struct {
 	Weapon               telemetryObjectItem      `json:"weapon"`
 }
 
+// NewLogPlayerUseThrowable create new LogPlayerUseThrowable structure.
 func NewLogPlayerUseThrowable(raw json.RawMessage) (l *LogPlayerUseThrowable, err error) {
 	l = &LogPlayerUseThrowable{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogRedZoneEnded structure.
 type LogRedZoneEnded struct {
 	telemetryEvent
 	Drivers []telemetryObjectCharacter `json:"drivers"`
 }
 
+// NewLogRedZoneEnded create new LogRedZoneEnded structure.
 func NewLogRedZoneEnded(raw json.RawMessage) (l *LogRedZoneEnded, err error) {
 	l = &LogRedZoneEnded{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogSwimEnd structure.
 type LogSwimEnd struct {
 	telemetryEvent
 	Character           telemetryObjectCharacter `json:"character"`
@@ -586,35 +621,38 @@ type LogSwimEnd struct {
 	MaxSwimDepthOfWater float64                  `json:"maxSwimDepthOfWater"`
 }
 
+// NewLogSwimEnd create new LogSwimEnd structure.
 func NewLogSwimEnd(raw json.RawMessage) (l *LogSwimEnd, err error) {
 	l = &LogSwimEnd{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogSwimStart structure.
 type LogSwimStart struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
 }
 
+// NewLogSwimStart create new LogSwimStart structure.
 func NewLogSwimStart(raw json.RawMessage) (l *LogSwimStart, err error) {
 	l = &LogSwimStart{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogVaultStart structure.
 type LogVaultStart struct {
 	telemetryEvent
 	Character   telemetryObjectCharacter `json:"character"`
 	IsLedgeGrab bool                     `json:"isLedgeGrab"`
 }
 
+// NewLogVaultStart create new LogVaultStart structure.
 func NewLogVaultStart(raw json.RawMessage) (l *LogVaultStart, err error) {
 	l = &LogVaultStart{}
 	err = json.Unmarshal(raw, &l)
@@ -624,6 +662,7 @@ func NewLogVaultStart(raw json.RawMessage) (l *LogVaultStart, err error) {
 	return
 }
 
+// LogVehicleDestroy structure.
 type LogVehicleDestroy struct {
 	telemetryEvent
 	AttackId           int                      `json:"attackId"`
@@ -634,15 +673,16 @@ type LogVehicleDestroy struct {
 	Distance           float64                  `json:"distance"`
 }
 
+// NewLogVehicleDestroy create new LogVehicleDestroy structure.
 func NewLogVehicleDestroy(raw json.RawMessage) (l *LogVehicleDestroy, err error) {
 	l = &LogVehicleDestroy{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogVehicleLeave structure.
 type LogVehicleLeave struct {
 	telemetryEvent
 	Character        telemetryObjectCharacter   `json:"character"`
@@ -653,15 +693,16 @@ type LogVehicleLeave struct {
 	FellowPassengers []telemetryObjectCharacter `json:"fellowPassengers"`
 }
 
+// NewLogVehicleLeave create new LogVehicleLeave structure.
 func NewLogVehicleLeave(raw json.RawMessage) (l *LogVehicleLeave, err error) {
 	l = &LogVehicleLeave{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogVehicleRide structure.
 type LogVehicleRide struct {
 	telemetryEvent
 	Character        telemetryObjectCharacter   `json:"character"`
@@ -670,15 +711,16 @@ type LogVehicleRide struct {
 	FellowPassengers []telemetryObjectCharacter `json:"fellowPassengers"`
 }
 
+// NewLogVehicleRide create new LogVehicleRide structure.
 func NewLogVehicleRide(raw json.RawMessage) (l *LogVehicleRide, err error) {
 	l = &LogVehicleRide{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogWeaponFireCount structure.
 type LogWeaponFireCount struct {
 	telemetryEvent
 	Character telemetryObjectCharacter `json:"character"`
@@ -687,15 +729,16 @@ type LogWeaponFireCount struct {
 	FireCount int `json:"fireCount"`
 }
 
+// NewLogWeaponFireCount create new LogWeaponFireCount structure.
 func NewLogWeaponFireCount(raw json.RawMessage) (l *LogWeaponFireCount, err error) {
 	l = &LogWeaponFireCount{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return
 }
 
+// LogWheelDestroy structure.
 type LogWheelDestroy struct {
 	telemetryEvent
 	AttackId           int                      `json:"attackId"`
@@ -705,10 +748,10 @@ type LogWheelDestroy struct {
 	DamageCauserName   string                   `json:"damageCauserName"`
 }
 
+// NewLogArmorDestroy create new LogArmorDestroy structure.
 func NewLogWheelDestroy(raw json.RawMessage) (l *LogWheelDestroy, err error) {
 	l = &LogWheelDestroy{}
-	err = json.Unmarshal(raw, l)
-	if err == nil {
+	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}
 	return

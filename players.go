@@ -9,11 +9,14 @@ import (
 
 // Player objects contain information about a player and a list of their recent matches (up to 14 days old).
 // Note: player objects are specific to platform shards.
+
+// Player structure.
 type Player struct {
 	Data  playerData `json:"data"`
 	Links links      `json:"links"`
 }
 
+// Players structure.
 type Players struct {
 	Data  []playerData `json:"data"`
 	Links links        `json:"links"`
@@ -30,9 +33,9 @@ type playerData struct {
 		// PUBG IGN
 		Name string `json:"name"`
 		// Identifies the studio and game
-		TitleId string `json:"titleId"`
+		TitleID string `json:"titleId"`
 		// Platform shard
-		ShardId string `json:"shardId"`
+		ShardID string `json:"shardId"`
 	} `json:"attributes"`
 
 	// References to resource objects related to this player
@@ -47,7 +50,7 @@ type playerData struct {
 	Links links `json:"links"`
 }
 
-// Get a single player.
+// Player returns a single player.
 func (c Client) Player(platform Platform, accountID string) (player *Player, err error) {
 	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s", accountID))
 	if err != nil {
@@ -59,7 +62,7 @@ func (c Client) Player(platform Platform, accountID string) (player *Player, err
 	return
 }
 
-// Get a collection of up to 10 players by IDs.
+// PlayersByIDs returns a collection of up to 10 players by IDs.
 func (c Client) PlayersByIDs(platform Platform, accountID ...string) (players *Players, err error) {
 	if len(accountID) == 0 || len(accountID) > 10 {
 		err = errors.New("You must specify 1 to 10 players. ")
@@ -77,7 +80,7 @@ func (c Client) PlayersByIDs(platform Platform, accountID ...string) (players *P
 	return
 }
 
-// Get a collection of up to 10 players by names.
+// PlayersByNames returns a collection of up to 10 players by names.
 func (c Client) PlayersByNames(platform Platform, name ...string) (players *Players, err error) {
 	if len(name) == 0 || len(name) > 10 {
 		err = errors.New("You must specify 1 to 10 players. ")

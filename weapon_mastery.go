@@ -16,9 +16,9 @@ type WeaponMastery struct {
 			// The platform
 			Platform string `json:"platform"`
 			// SeasonId: career
-			SeasonId string `json:"seasonId"`
+			SeasonID string `json:"seasonId"`
 			// The match ID of the last completed match that was played.
-			LatestMatchId string `json:"latestMatchId"`
+			LatestMatchID string `json:"latestMatchId"`
 			// The weapon summary for each weapon
 			WeaponSummaries map[string]weaponSummary `json:"weaponSummaries"`
 		} `json:"attributes"`
@@ -27,7 +27,7 @@ type WeaponMastery struct {
 	Links links `json:"links"`
 }
 
-// Get weapon mastery information for a single player.
+// WeaponMastery returns a weapon mastery information for a single player.
 func (c Client) WeaponMastery(platform Platform, accountID string) (weaponMastery *WeaponMastery, err error) {
 	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/weapon_mastery", accountID))
 	if err != nil {

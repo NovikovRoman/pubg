@@ -7,6 +7,15 @@ import (
 	"strings"
 )
 
+// Notes:
+//
+// - Use the platform shard when making requests for PC and PS4 players' season stats for seasons after
+// division.bro.official.2018-09, and for Xbox season stats for seasons after division.bro.official.2018-08.
+// Use the platform-region shard for making any other requests for players' season stats.
+//
+// - The list of seasons can be queried using both the plaform shard and the platform-region shard.
+
+// Seasons structure.
 type Seasons struct {
 	Data []struct {
 		// Identifier for this object type ("season")
@@ -23,18 +32,18 @@ type Seasons struct {
 
 	Links links `json:"links"`
 }
-
+// SeasonStatsPlayer structure.
 type SeasonStatsPlayer struct {
 	Data  statistics `json:"data"`
 	Links links      `json:"links"`
 }
-
+// SeasonStatsPlayers structure.
 type SeasonStatsPlayers struct {
 	Data  []statistics `json:"data"`
 	Links links        `json:"links"`
 }
 
-// Get the list of available seasons.
+// Seasons returns the list of available seasons.
 func (c Client) Seasons(platform Platform) (seasons *Seasons, err error) {
 	b, _, err := c.requestGET(platform, "/seasons")
 	if err != nil {
@@ -46,7 +55,7 @@ func (c Client) Seasons(platform Platform) (seasons *Seasons, err error) {
 	return
 }
 
-// Get season information for a single player.
+// SeasonStatsPlayer returns a season information for a single player.
 func (c Client) SeasonStatsPlayer(platform Platform, seasonID, accountID string) (stats *SeasonStatsPlayer, err error) {
 	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/%s", accountID, seasonID))
 	if err != nil {
@@ -58,7 +67,7 @@ func (c Client) SeasonStatsPlayer(platform Platform, seasonID, accountID string)
 	return
 }
 
-// Get season information for up to 10 players.
+// SeasonStatsPlayers returns a season information for up to 10 players.
 func (c Client) SeasonStatsPlayers(platform Platform, seasonID string, gameMode GameMode, accountID ...string) (stats *SeasonStatsPlayers, err error) {
 	if !gameMode.IsValid() {
 		err = errors.New("Unknown game mode. ")

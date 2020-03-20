@@ -11,11 +11,12 @@ import (
 	"time"
 )
 
+// Telemetry structure.
 type Telemetry struct {
 	index int
 	Raw   []json.RawMessage
 }
-
+// NewTelemetryFromBytes create new Telemetry structure from bytes.
 func NewTelemetryFromBytes(b []byte) (telemetry *Telemetry, err error) {
 	var raw []json.RawMessage
 	err = json.Unmarshal(b, &raw)
@@ -24,7 +25,7 @@ func NewTelemetryFromBytes(b []byte) (telemetry *Telemetry, err error) {
 	}
 	return
 }
-
+// NewTelemetryFromFile create new Telemetry structure from file.
 func NewTelemetryFromFile(filename string) (telemetry *Telemetry, err error) {
 	var b []byte
 	if b, err = ioutil.ReadFile(filename); err != nil {
@@ -33,7 +34,7 @@ func NewTelemetryFromFile(filename string) (telemetry *Telemetry, err error) {
 	telemetry, err = NewTelemetryFromBytes(b)
 	return
 }
-
+// NewTelemetryFromURL create new Telemetry structure from url.
 func NewTelemetryFromURL(url string, transport *http.Transport) (telemetry *Telemetry, err error) {
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -87,15 +88,15 @@ func NewTelemetryFromURL(url string, transport *http.Transport) (telemetry *Tele
 	telemetry, err = NewTelemetryFromBytes(b)
 	return
 }
-
+// Len returns the number of events.
 func (t *Telemetry) Len() int {
 	return len(t.Raw)
 }
-
+// Rewind reset pointer.
 func (t *Telemetry) Rewind() {
 	t.index = 0
 }
-
+// SetIndex set pointer.
 func (t *Telemetry) SetIndex(index int) error {
 	if !t.validIndex(t.index) {
 		return errors.New("Invalid argument. ")
@@ -104,7 +105,7 @@ func (t *Telemetry) SetIndex(index int) error {
 	t.index = index
 	return nil
 }
-
+// Next returns the next event (date, type, raw).
 func (t *Telemetry) Next() (eventDate time.Time, eventType string, raw json.RawMessage, ok bool, err error) {
 	if !t.validIndex(t.index) {
 		return

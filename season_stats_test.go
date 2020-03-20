@@ -2,26 +2,20 @@ package pubg
 
 import (
 	"github.com/stretchr/testify/require"
-	"os"
 	"testing"
 	"time"
 )
 
 func TestClient_Seasons(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	seasons, err := c.Seasons(SteamPlatform)
+	seasons, err := cTest.Seasons(SteamPlatform)
 	require.Nil(t, err)
 	require.True(t, len(seasons.Data) > 0)
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }
 
 func TestClient_SeasonStatsPlayer(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	stats, err := c.SeasonStatsPlayer(SteamPlatform, testSeasonID, testAccountID)
+	stats, err := cTest.SeasonStatsPlayer(SteamPlatform, testSeasonID, testAccountID)
 	require.Nil(t, err)
 	require.True(t, len(stats.Data.Attributes.GameModeStats) > 0)
 
@@ -29,15 +23,11 @@ func TestClient_SeasonStatsPlayer(t *testing.T) {
 	require.Equal(t, stats.Data.Relationships.Player.Data.ID, testAccountID)
 	require.Equal(t, stats.Data.Relationships.Season.Data.ID, testSeasonID)
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }
 
 func TestClient_SeasonStatsPlayers(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	stats, err := c.SeasonStatsPlayers(SteamPlatform, testSeasonID, DuoMode, testAccountID, testAccountID2)
+	stats, err := cTest.SeasonStatsPlayers(SteamPlatform, testSeasonID, DuoMode, testAccountID, testAccountID2)
 	require.Nil(t, err)
 	require.Len(t, stats.Data, 2)
 
@@ -51,8 +41,5 @@ func TestClient_SeasonStatsPlayers(t *testing.T) {
 		require.Equal(t, d.Relationships.Season.Data.ID, testSeasonID)
 	}
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }

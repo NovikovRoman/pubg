@@ -7,7 +7,10 @@ import (
 	"time"
 )
 
-// Match objects contain information about a completed match such as the game mode played, duration, and which players participated.
+// Match objects contain information about a completed match such as the game mode played,
+// duration, and which players participated.
+
+// Matches structure.
 type Matches struct {
 	Data struct {
 		// Identifier for this object type ("match")
@@ -38,7 +41,7 @@ type Matches struct {
 			// Platform shard
 			ShardId string `json:"shardId"`
 			// Identifies the studio and game
-			TitleId string `json:"titleId"`
+			TitleID string `json:"titleId"`
 		} `json:"attributes"`
 
 		// References to resource objects that can be found in the included array
@@ -85,7 +88,7 @@ type roster struct {
 			// This roster's placement in the match. 1 - 130
 			Rank int `json:"rank"`
 			// An arbitrary ID assigned to this roster
-			TeamId int `json:"teamId"`
+			TeamID int `json:"teamId"`
 		} `json:"stats"`
 	} `json:"attributes"`
 
@@ -105,7 +108,7 @@ type participant struct {
 	ID         string `json:"id"`
 	Attributes struct {
 		// Platform shard
-		ShardId string `json:"shardId"`
+		ShardID string `json:"shardId"`
 		// Player stats in the context of a match
 		Stats struct {
 			// Number of players knocked
@@ -174,7 +177,7 @@ type asset struct {
 	} `json:"attributes"`
 }
 
-// Get a single match.
+// Matches returns a single match.
 func (c Client) Matches(platform Platform, matchID string) (matches *Matches, err error) {
 	b, _, err := c.requestGET(platform, fmt.Sprintf("/matches/%s", matchID))
 	if err != nil {

@@ -2,28 +2,22 @@ package pubg
 
 import (
 	"github.com/stretchr/testify/require"
-	"os"
 	"testing"
 	"time"
 )
 
 func TestClient_Player(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	player, err := c.Player(SteamPlatform, testAccountID)
+	player, err := cTest.Player(SteamPlatform, testAccountID)
 	require.Nil(t, err)
 	require.True(t, len(player.Data.Relationships.Matches.Data) > 0)
 	require.True(t, player.Data.Attributes.Name != "")
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }
 
 func TestClient_PlayersByNames(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
 	names := []string{testAccountName, testAccountName2}
-	players, err := c.PlayersByNames(SteamPlatform, names...)
+	players, err := cTest.PlayersByNames(SteamPlatform, names...)
 	require.Nil(t, err)
 	require.Len(t, players.Data, 2)
 
@@ -41,15 +35,11 @@ func TestClient_PlayersByNames(t *testing.T) {
 		}
 	}
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }
 
 func TestClient_PlayersByIDs(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	players, err := c.PlayersByIDs(SteamPlatform, testAccountID, testAccountID2)
+	players, err := cTest.PlayersByIDs(SteamPlatform, testAccountID, testAccountID2)
 	require.Nil(t, err)
 	require.Len(t, players.Data, 2)
 
@@ -67,8 +57,5 @@ func TestClient_PlayersByIDs(t *testing.T) {
 		}
 	}
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }

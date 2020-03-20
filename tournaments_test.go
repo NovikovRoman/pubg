@@ -2,14 +2,12 @@ package pubg
 
 import (
 	"github.com/stretchr/testify/require"
-	"os"
 	"testing"
 	"time"
 )
 
 func TestClient_Tournaments(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	tournaments, err := c.Tournaments()
+	tournaments, err := cTest.Tournaments()
 
 	require.Nil(t, err)
 
@@ -18,15 +16,11 @@ func TestClient_Tournaments(t *testing.T) {
 	require.Equal(t, tournaments.Data[0].Type, "tournament")
 	require.False(t, tournaments.Data[0].Attributes.CreatedAt.IsZero())
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }
 
 func TestClient_Tournament(t *testing.T) {
-	c := NewClient(os.Getenv("APIKEY"), nil)
-	tournament, err := c.Tournament(testTournamentID)
+	tournament, err := cTest.Tournament(testTournamentID)
 	require.Nil(t, err)
 
 	require.True(t, len(tournament.Included) > 0)
@@ -34,8 +28,5 @@ func TestClient_Tournament(t *testing.T) {
 	require.Equal(t, tournament.Data.Type, "tournament")
 	require.False(t, tournament.Included[0].Attributes.CreatedAt.IsZero())
 
-	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
-	if os.Getenv("PAUSE") != "" {
-		time.Sleep(pause)
-	}
+	time.Sleep(pause)
 }

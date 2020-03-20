@@ -1,5 +1,5 @@
 # PUBG
-
+[![Build Status](https://travis-ci.com/NovikovRoman/pubg.svg?branch=master)](https://travis-ci.com/NovikovRoman/pubg.svg?branch=master)
 > This is a Go client library for gathering [PUBG API reference] data
 
 ## Table of Contents
