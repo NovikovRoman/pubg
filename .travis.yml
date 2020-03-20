@@ -5,7 +5,6 @@ env:
   - GO111MODULE=on
 
 sudo: false
-install: true
 
 git:
   depth: 1
@@ -13,9 +12,5 @@ git:
 notifications:
   email: true
 
-before_script:
-  - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v1.24.0
-
 script:
-  - golangci-lint run
   - go test -v ./...
