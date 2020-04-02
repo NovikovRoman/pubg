@@ -221,6 +221,11 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 		require.Nil(t, err)
 		require.Equal(t, l.Date, eventDate)
 
+	case "LogPlayerUseFlareGun":
+		l, err := NewLogPlayerUseFlareGun(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
 	case "LogPlayerUseThrowable":
 		l, err := NewLogPlayerUseThrowable(raw)
 		require.Nil(t, err)

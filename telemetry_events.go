@@ -579,6 +579,25 @@ func NewLogPlayerTakeDamage(raw json.RawMessage) (l *LogPlayerTakeDamage, err er
 	return
 }
 
+// LogPlayerUseFlareGun structure.
+type LogPlayerUseFlareGun struct {
+	telemetryEvent
+	AttackId             int                      `json:"attackId"`
+	FireWeaponStackCount int                      `json:"fireWeaponStackCount"`
+	Attacker             telemetryObjectCharacter `json:"attacker"`
+	AttackType           string                   `json:"attackType"`
+	Weapon               telemetryObjectItem      `json:"weapon"`
+}
+
+// NewLogPlayerUseFlareGun create new LogPlayerUseFlareGun structure.
+func NewLogPlayerUseFlareGun(raw json.RawMessage) (l *LogPlayerUseFlareGun, err error) {
+	l = &LogPlayerUseFlareGun{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogPlayerUseThrowable structure.
 type LogPlayerUseThrowable struct {
 	telemetryEvent
