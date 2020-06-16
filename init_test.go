@@ -27,7 +27,7 @@ func init() {
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
 	if os.Getenv("PAUSE") != "" {
-		pause = time.Second * 8
+		pause = time.Second * 10
 	}
 
 	seasons, err := cTest.Seasons(SteamPlatform)

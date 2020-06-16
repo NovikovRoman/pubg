@@ -11,6 +11,7 @@ func TestClient_Leaderboards(t *testing.T) {
 	if err != nil {
 		if err, ok := err.(*ErrBadRequest); ok {
 			require.Equal(t, err.GetDetail(), "missing data - ShardID: "+SteamPlatform)
+			time.Sleep(pause)
 			return
 		}
 	}
