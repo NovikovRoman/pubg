@@ -13,7 +13,6 @@ const (
 	testAccountName   = "WackyJacky101"
 	testAccountID2    = "account.2f6161f9becd4f8d9bcac25c5f049be8"
 	testAccountName2  = "Lecuma46"
-	testSeasonID      = "division.bro.official.pc-2018-06"
 	testTournamentID  = "eu-pgs20"
 	testTelemetryFile = "testdata/telemetry.json"
 )

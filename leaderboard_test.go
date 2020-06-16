@@ -8,6 +8,12 @@ import (
 
 func TestClient_Leaderboards(t *testing.T) {
 	leaderboards, err := cTest.Leaderboards(SteamPlatform, testSeasonID, DuoMode, 1)
+	if err != nil {
+		if err, ok := err.(*ErrBadRequest); ok {
+			require.Equal(t, err.GetDetail(), "missing data - ShardID: "+SteamPlatform)
+			return
+		}
+	}
 	require.Nil(t, err)
 
 	require.Equal(t, leaderboards.Data.Attributes.GameMode, DuoMode)

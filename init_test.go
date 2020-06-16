@@ -14,6 +14,7 @@ var (
 	pause            = time.Microsecond
 	testMatchID      = ""
 	testTelemetryURL = ""
+	testSeasonID     = ""
 )
 
 func init() {
@@ -27,6 +28,16 @@ func init() {
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
 	if os.Getenv("PAUSE") != "" {
 		pause = time.Second * 8
+	}
+
+	seasons, err := cTest.Seasons(SteamPlatform)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	for _, s := range seasons.Data {
+		if s.Attributes.IsCurrentSeason {
+			testSeasonID = s.ID
+		}
 	}
 
 	// получим MatchID
