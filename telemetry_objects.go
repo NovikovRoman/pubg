@@ -24,6 +24,14 @@ type telemetryObjectCharacter struct {
 	Zone         []string                `json:"zone"`
 }
 
+type telemetryObjectCharacterWrapper struct {
+	Character           telemetryObjectCharacter `json:"character"`
+	PrimaryWeaponFirst  string                   `json:"primaryWeaponFirst"`
+	PrimaryWeaponSecond string                   `json:"primaryWeaponSecond"`
+	SecondaryWeapon     string                   `json:"secondaryWeapon"`
+	SpawnKitIndex       int                      `json:"spawnKitIndex"`
+}
+
 // IsGame represents the phase of the game defined by the status of bluezone and safezone
 // isGame = 0 -> Before lift off
 //

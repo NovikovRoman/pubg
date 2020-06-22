@@ -279,7 +279,7 @@ func NewLogMatchDefinition(raw json.RawMessage) (l *LogMatchDefinition, err erro
 // LogMatchEnd structure.
 type LogMatchEnd struct {
 	telemetryEvent
-	Characters []telemetryObjectCharacter `json:"characters"`
+	Characters []telemetryObjectCharacterWrapper `json:"characters"`
 	// Shows winning players only
 	GameResultOnFinished telemetryObjectGameResultOnFinished `json:"gameResultOnFinished"`
 }
@@ -298,7 +298,7 @@ type LogMatchStart struct {
 	telemetryEvent
 	MapName                  string                                 `json:"mapName"`
 	WeatherId                string                                 `json:"weatherId"`
-	Characters               []telemetryObjectCharacter             `json:"characters"`
+	Characters               []telemetryObjectCharacterWrapper      `json:"characters"`
 	CameraViewBehaviour      string                                 `json:"cameraViewBehaviour"`
 	TeamSize                 int                                    `json:"teamSize"`
 	IsCustomGame             bool                                   `json:"isCustomGame"`
