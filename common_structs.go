@@ -159,3 +159,61 @@ type weaponSummary struct {
 		Count int `json:"Count"`
 	} `json:"Medals"`
 }
+
+type rankedStatistics struct {
+	Type       string `json:"type"`
+	Attributes struct {
+		RankedGameModeStats map[string]rankedGameModeStats `json:"rankedGameModeStats"`
+	} `json:"attributes"`
+
+	Relationships struct {
+		// type - Identifier for this object type ("player")
+		// id - Player ID
+		Player dataIDAndType `json:"player"`
+		// type - Identifier for this object type ("season")
+		// id - Season ID. Used to lookup a player's stats for this season on the /players endpoint
+		Season dataIDAndType `json:"season"`
+	} `json:"relationships"`
+}
+
+// rankedGameModeStats structure contain a player's aggregated ranked stats for a game mode in the context of a season.
+type rankedGameModeStats struct {
+	// Player's current rank points
+	CurrentRankPoint int `json:"currentRankPoint"`
+	// Player's highest rank points
+	BestRankPoint int `json:"bestRankPoint"`
+	CurrentTier   struct {
+		// Player's current ranked tier
+		Tier string `json:"tier"`
+		// Player's current ranked subtier
+		SubTier string `json:"subTier"`
+	} `json:"currentTier"`
+	BestTier struct {
+		// Player's current ranked tier
+		Tier string `json:"tier"`
+		// Player's current ranked subtier
+		SubTier string `json:"subTier"`
+	} `json:"bestTier"`
+	// Number of matches played
+	RoundsPlayed int `json:"roundsPlayed"`
+	// Average rank
+	AvgRank float64 `json:"avgRank"`
+	// Ratio of number of times this player made it to the top 10 in a match / times didn't make it to top 10
+	Top10Ratio float64 `json:"top10Ratio"`
+	// Ratio of number of matches won / matches didn't win
+	WinRatio float64 `json:"winRatio"`
+	// Number of enemy players this player damaged that were killed by teammates
+	Assists int `json:"assists"`
+	// Number of matches won
+	Wins int `json:"wins"`
+	// Kill death assist ratio
+	Kda float64 `json:"kda"`
+	// Number of enemy players killed
+	Kills int `json:"kills"`
+	// Number of player deaths
+	Deaths int `json:"deaths"`
+	// Total damage dealt. Note: Self inflicted damage is subtracted
+	DamageDealt float64 `json:"damageDealt"`
+	// Number of enemy players knocked
+	DBNOs int `json:"dBNOs"`
+}

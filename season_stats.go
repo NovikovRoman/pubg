@@ -33,6 +33,12 @@ type Seasons struct {
 	Links links `json:"links"`
 }
 
+// RankedStatsPlayer structure.
+type RankedStatsPlayer struct {
+	Data  rankedStatistics `json:"data"`
+	Links links            `json:"links"`
+}
+
 // SeasonStatsPlayer structure.
 type SeasonStatsPlayer struct {
 	Data  statistics `json:"data"`
@@ -54,6 +60,18 @@ func (c Client) Seasons(platform Platform) (seasons *Seasons, err error) {
 
 	seasons = &Seasons{}
 	err = json.Unmarshal(b, seasons)
+	return
+}
+
+// RankedStats returns ranked stats for a single player.
+func (c Client) RankedStatsPlayer(platform Platform, seasonID, accountID string) (stats *RankedStatsPlayer, err error) {
+	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/%s/ranked", accountID, seasonID))
+	if err != nil {
+		return
+	}
+
+	stats = &RankedStatsPlayer{}
+	err = json.Unmarshal(b, stats)
 	return
 }
 

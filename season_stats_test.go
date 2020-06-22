@@ -14,6 +14,19 @@ func TestClient_Seasons(t *testing.T) {
 	time.Sleep(pause)
 }
 
+func TestClient_RankedStatsPlayer(t *testing.T) {
+	stats, err := cTest.RankedStatsPlayer(SteamPlatform, testSeasonID, testAccountID)
+	require.Nil(t, err)
+
+	if len(stats.Data.Attributes.RankedGameModeStats) > 0 {
+		for _, s := range stats.Data.Attributes.RankedGameModeStats {
+			require.True(t, s.BestRankPoint > 0)
+		}
+	}
+
+	time.Sleep(pause)
+}
+
 func TestClient_SeasonStatsPlayer(t *testing.T) {
 	stats, err := cTest.SeasonStatsPlayer(SteamPlatform, testSeasonID, testAccountID)
 	require.Nil(t, err)
