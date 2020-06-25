@@ -77,10 +77,6 @@ type gameModeStats struct {
 	MaxKillStreaks int `json:"maxKillStreaks"`
 	// Longest time survived in a match
 	MostSurvivalTime float64 `json:"mostSurvivalTime"`
-	// Number of rank points the player was awarded. This value will be 0 when roundsPlayed < 10
-	RankPoints float64 `json:"rankPoints"`
-	// Rank title in the form title-level
-	RankPointsTitle string `json:"rankPointsTitle"`
 	// Number of times this player revived teammates
 	Revives int `json:"revives"`
 	// Total distance traveled in vehicles measured in meters
