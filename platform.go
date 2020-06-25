@@ -17,6 +17,8 @@ const (
 	ConsolePlatform = "console"
 	// TournamentPlatform - Tournament
 	TournamentPlatform = "tournament"
+	// StadiaPlatform - Stadia
+	StadiaPlatform = "stadia"
 )
 
 // Platform as string
@@ -30,7 +32,7 @@ func (p Platform) IsEmpty() bool {
 // IsValid returns true if the platform is valid.
 func (p Platform) IsValid() bool {
 	return p == EmptyPlatform || p == SteamPlatform || p == PsnPlatform || p == XboxPlatform ||
-		p == KakaoPlatform || p == ConsolePlatform || p == TournamentPlatform
+		p == KakaoPlatform || p == ConsolePlatform || p == TournamentPlatform || p == StadiaPlatform
 }
 
 // TransformToPlatform transforms a string into a Platform structure.
@@ -63,6 +65,10 @@ func TransformToPlatform(name string) (platform Platform, err error) {
 
 	case TournamentPlatform:
 		platform = TournamentPlatform
+		return
+
+	case StadiaPlatform:
+		platform = StadiaPlatform
 		return
 	}
 
