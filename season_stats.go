@@ -53,8 +53,8 @@ type SeasonStatsPlayers struct {
 
 // Seasons returns the list of available seasons.
 func (c Client) Seasons(platform Platform) (seasons *Seasons, err error) {
-	b, _, err := c.requestGET(platform, "/seasons")
-	if err != nil {
+	var b []byte
+	if b, _, err = c.requestGET(platform, "/seasons"); err != nil {
 		return
 	}
 
@@ -65,7 +65,8 @@ func (c Client) Seasons(platform Platform) (seasons *Seasons, err error) {
 
 // RankedStats returns ranked stats for a single player.
 func (c Client) RankedStatsPlayer(platform Platform, seasonID, accountID string) (stats *RankedStatsPlayer, err error) {
-	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/%s/ranked", accountID, seasonID))
+	var b []byte
+	b, _, err = c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/%s/ranked", accountID, seasonID))
 	if err != nil {
 		return
 	}
@@ -77,7 +78,8 @@ func (c Client) RankedStatsPlayer(platform Platform, seasonID, accountID string)
 
 // SeasonStatsPlayer returns a season information for a single player.
 func (c Client) SeasonStatsPlayer(platform Platform, seasonID, accountID string) (stats *SeasonStatsPlayer, err error) {
-	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/%s", accountID, seasonID))
+	var b []byte
+	b, _, err = c.requestGET(platform, fmt.Sprintf("/players/%s/seasons/%s", accountID, seasonID))
 	if err != nil {
 		return
 	}
@@ -89,6 +91,7 @@ func (c Client) SeasonStatsPlayer(platform Platform, seasonID, accountID string)
 
 // SeasonStatsPlayers returns a season information for up to 10 players.
 func (c Client) SeasonStatsPlayers(platform Platform, seasonID string, gameMode GameMode, accountID ...string) (stats *SeasonStatsPlayers, err error) {
+	var b []byte
 	if !gameMode.IsValid() {
 		err = errors.New("Unknown game mode. ")
 		return
@@ -99,7 +102,7 @@ func (c Client) SeasonStatsPlayers(platform Platform, seasonID string, gameMode 
 		return
 	}
 
-	b, _, err := c.requestGET(platform,
+	b, _, err = c.requestGET(platform,
 		fmt.Sprintf("/seasons/%s/gameMode/%s/players?filter[playerIds]=%s",
 			seasonID, gameMode, strings.Join(accountID, ","),
 		),
