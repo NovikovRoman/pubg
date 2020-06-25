@@ -67,6 +67,14 @@ func TestClient_Platform(t *testing.T) {
 	require.Nil(t, err)
 	require.Equal(t, string(p), TournamentPlatform)
 
+	p = StadiaPlatform
+	require.False(t, p.IsEmpty())
+	require.True(t, p.IsValid())
+	require.Equal(t, string(p), StadiaPlatform)
+	p, err = TransformToPlatform(StadiaPlatform)
+	require.Nil(t, err)
+	require.Equal(t, string(p), StadiaPlatform)
+
 	p = "unknown"
 	require.False(t, p.IsEmpty())
 	require.False(t, p.IsValid())
