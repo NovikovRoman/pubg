@@ -26,13 +26,13 @@ func TestClient_PlayersByNames(t *testing.T) {
 		if d.ID == testAccountID {
 			require.Equal(t, d.ID, testAccountID)
 			require.Equal(t, d.Attributes.Name, testAccountName)
-			require.True(t, len(d.Relationships.Matches.Data) > 0)
 
 		} else {
 			require.Equal(t, d.ID, testAccountID2)
 			require.Equal(t, d.Attributes.Name, testAccountName2)
-			require.True(t, len(d.Relationships.Matches.Data) > 0)
 		}
+
+		require.Equal(t, d.Attributes.ShardID, SteamPlatform)
 	}
 
 	time.Sleep(pause)
@@ -48,13 +48,13 @@ func TestClient_PlayersByIDs(t *testing.T) {
 		if d.ID == testAccountID {
 			require.Equal(t, d.ID, testAccountID)
 			require.Equal(t, d.Attributes.Name, testAccountName)
-			require.True(t, len(d.Relationships.Matches.Data) > 0)
 
 		} else {
 			require.Equal(t, d.ID, testAccountID2)
 			require.Equal(t, d.Attributes.Name, testAccountName2)
-			require.True(t, len(d.Relationships.Matches.Data) > 0)
 		}
+
+		require.Equal(t, d.Attributes.ShardID, SteamPlatform)
 	}
 
 	time.Sleep(pause)
