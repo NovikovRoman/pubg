@@ -121,6 +121,11 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 		require.Nil(t, err)
 		require.Equal(t, l.Date, eventDate)
 
+	case "LogItemPickupFromCustomPackage":
+		l, err := NewLogItemPickupFromCustomPackage(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
 	case "LogItemPickupFromLootBox":
 		l, err := NewLogItemPickupFromLootBox(raw)
 		require.Nil(t, err)
@@ -253,6 +258,11 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 
 	case "LogVehicleDestroy":
 		l, err := NewLogVehicleDestroy(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
+	case "LogVehicleDamage":
+		l, err := NewLogVehicleDamage(raw)
 		require.Nil(t, err)
 		require.Equal(t, l.Date, eventDate)
 

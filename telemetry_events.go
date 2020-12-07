@@ -209,6 +209,22 @@ func NewLogItemPickupFromCarepackage(raw json.RawMessage) (l *LogItemPickupFromC
 	return
 }
 
+// LogItemPickupFromCustomPackage structure.
+type LogItemPickupFromCustomPackage struct {
+	telemetryEvent
+	Character telemetryObjectCharacter `json:"character"`
+	Item      telemetryObjectItem      `json:"item"`
+}
+
+// NewLogItemPickupFromCustomPackage create new LogItemPickupFromCustomPackage structure.
+func NewLogItemPickupFromCustomPackage(raw json.RawMessage) (l *LogItemPickupFromCustomPackage, err error) {
+	l = &LogItemPickupFromCustomPackage{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogItemPickupFromLootBox structure.
 type LogItemPickupFromLootBox struct {
 	telemetryEvent
@@ -263,7 +279,6 @@ func NewLogItemUse(raw json.RawMessage) (l *LogItemUse, err error) {
 type LogMatchDefinition struct {
 	telemetryEvent
 	MatchId     string `json:"MatchId"`
-	PingQuality string `json:"PingQuality"`
 	SeasonState string `json:"SeasonState"`
 }
 
@@ -340,7 +355,7 @@ type LogObjectInteraction struct {
 	Character                telemetryObjectCharacter `json:"character"`
 	ObjectType               string                   `json:"objectType"`
 	ObjectTypeStatus         string                   `json:"objectTypeStatus"`
-	ObjectTypeAdditionalInfo []string                 `json:"objectTypeAdditionalInfo"`
+	ObjectTypeAdditionalInfo []map[string]interface{} `json:"objectTypeAdditionalInfo"`
 	Common                   telemetryObjectCommon    `json:"common"`
 }
 
@@ -695,6 +710,27 @@ type LogVehicleDestroy struct {
 // NewLogVehicleDestroy create new LogVehicleDestroy structure.
 func NewLogVehicleDestroy(raw json.RawMessage) (l *LogVehicleDestroy, err error) {
 	l = &LogVehicleDestroy{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
+// LogVehicleDamage structure.
+type LogVehicleDamage struct {
+	telemetryEvent
+	AttackId           int                      `json:"attackId"`
+	Attacker           telemetryObjectCharacter `json:"attacker"`
+	Vehicle            telemetryObjectVehicle   `json:"vehicle"`
+	DamageTypeCategory string                   `json:"damageTypeCategory"`
+	DamageCauserName   string                   `json:"damageCauserName"`
+	Damage             float64                  `json:"damage"`
+	Distance           float64                  `json:"distance"`
+}
+
+// NewLogVehicleDamage create new LogVehicleDamage structure.
+func NewLogVehicleDamage(raw json.RawMessage) (l *LogVehicleDamage, err error) {
+	l = &LogVehicleDamage{}
 	if err = json.Unmarshal(raw, l); err == nil {
 		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
 	}

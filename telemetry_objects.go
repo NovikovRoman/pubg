@@ -126,7 +126,11 @@ type telemetryObjectVehicle struct {
 	VehicleUniqueID int     `json:"vehicleUniqueId"`
 	HealthPercent   float64 `json:"healthPercent"`
 	FeulPercent     float64 `json:"feulPercent"`
+	AltitudeAbs     float64 `json:"altitudeAbs"`
+	AltitudeRel     float64 `json:"altitudeRel"`
+	Velocity        float64 `json:"velocity"`
 	SeatIndex       int     `json:"seatIndex"`
 	IsWheelsInAir   bool    `json:"isWheelsInAir"`
 	IsInWaterVolume bool    `json:"isInWaterVolume"`
+	IsEngineOn      bool    `json:"isEngineOn"`
 }

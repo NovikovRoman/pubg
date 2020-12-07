@@ -177,19 +177,9 @@ type rankedGameModeStats struct {
 	// Player's current rank points
 	CurrentRankPoint int `json:"currentRankPoint"`
 	// Player's highest rank points
-	BestRankPoint int `json:"bestRankPoint"`
-	CurrentTier   struct {
-		// Player's current ranked tier
-		Tier string `json:"tier"`
-		// Player's current ranked subtier
-		SubTier string `json:"subTier"`
-	} `json:"currentTier"`
-	BestTier struct {
-		// Player's current ranked tier
-		Tier string `json:"tier"`
-		// Player's current ranked subtier
-		SubTier string `json:"subTier"`
-	} `json:"bestTier"`
+	BestRankPoint int  `json:"bestRankPoint"`
+	CurrentTier   Tier `json:"currentTier"`
+	BestTier      Tier `json:"bestTier"`
 	// Number of matches played
 	RoundsPlayed int `json:"roundsPlayed"`
 	// Average rank
@@ -212,4 +202,11 @@ type rankedGameModeStats struct {
 	DamageDealt float64 `json:"damageDealt"`
 	// Number of enemy players knocked
 	DBNOs int `json:"dBNOs"`
+}
+
+type Tier struct {
+	// Player's current ranked tier
+	Tier string `json:"tier"`
+	// Player's current ranked subtier
+	SubTier string `json:"subTier"`
 }

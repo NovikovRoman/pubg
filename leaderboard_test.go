@@ -7,7 +7,7 @@ import (
 )
 
 func TestClient_Leaderboards(t *testing.T) {
-	leaderboards, err := cTest.Leaderboards(SteamPlatform, testSeasonID, DuoMode, 1)
+	leaderboards, err := cTest.Leaderboards(SteamPlatform, testSeasonID, DuoMode)
 	if err != nil {
 		if err, ok := err.(*ErrBadRequest); ok {
 			require.Equal(t, err.GetDetail(), "missing data - ShardID: "+SteamPlatform)
@@ -21,7 +21,7 @@ func TestClient_Leaderboards(t *testing.T) {
 	require.Equal(t, leaderboards.Data.Attributes.ShardId, SteamPlatform)
 
 	require.True(t, len(leaderboards.Data.Relationships.Players.Data) > 0)
-	require.True(t, len(leaderboards.Included) > 0)
+	require.True(t, len(leaderboards.Data.Included) > 0)
 
 	time.Sleep(pause)
 }
