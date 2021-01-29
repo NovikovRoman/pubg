@@ -196,6 +196,11 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 		require.Nil(t, err)
 		require.Equal(t, l.Date, eventDate)
 
+	case "LogPlayerKillV2":
+		l, err := NewLogPlayerKillV2(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
 	case "LogPlayerLogin":
 		l, err := NewLogPlayerLogin(raw)
 		require.Nil(t, err)

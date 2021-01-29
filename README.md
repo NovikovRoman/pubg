@@ -4,7 +4,7 @@
 
 > This is a Go client library for gathering [PUBG API reference] data
 
-Relevant for [V20.2.0](https://documentation.pubg.com/en/changelog/changelog.html#v20-2-0)
+Relevant for [V21.0.0](https://documentation.pubg.com/en/changelog/changelog.html#v21-0-0-date-tbd)
 
 ## Table of Contents
 

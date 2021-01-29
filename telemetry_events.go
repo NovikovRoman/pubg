@@ -479,6 +479,33 @@ func NewLogPlayerKill(raw json.RawMessage) (l *LogPlayerKill, err error) {
 	return
 }
 
+// LogPlayerKillV2 structure.
+type LogPlayerKillV2 struct {
+	telemetryEvent
+	AttackId                   int                       `json:"attackId"`
+	DBNOId                     int                       `json:"dBNOId"`
+	VictimGameResult           telemetryObjectGameResult `json:"victimGameResult"`
+	Victim                     telemetryObjectCharacter  `json:"victim"`
+	VictimWeapon               string                    `json:"VictimWeapon"`
+	VictimWeaponAdditionalInfo []string                  `json:"VictimWeaponAdditionalInfo"`
+	DBNOMaker                  telemetryObjectCharacter  `json:"dBNOMaker"`
+	DBNODamageInfo             telemetryObjectDamageInfo `json:"dBNODamageInfo"`
+	Finisher                   telemetryObjectCharacter  `json:"finisher"`
+	FinishDamageInfo           telemetryObjectDamageInfo `json:"finishDamageInfo"`
+	Killer                     telemetryObjectCharacter  `json:"killer"`
+	KillerDamageInfo           telemetryObjectDamageInfo `json:"killerDamageInfo"`
+	IsSuicide                  bool                      `json:"isSuicide"`
+}
+
+// NewLogPlayerKillV2 create new LogPlayerKillV2 structure.
+func NewLogPlayerKillV2(raw json.RawMessage) (l *LogPlayerKillV2, err error) {
+	l = &LogPlayerKillV2{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogPlayerLogin structure.
 type LogPlayerLogin struct {
 	telemetryEvent

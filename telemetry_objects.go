@@ -52,6 +52,15 @@ type telemetryObjectCommon struct {
 	IsGame float64 `json:"isGame"`
 }
 
+type telemetryObjectDamageInfo struct {
+	DamageReason            string   `json:"damageReason"`
+	DamageTypeCategory      string   `json:"damageTypeCategory"`
+	DamageCauserName        string   `json:"damageCauserName"`
+	AdditionalInfo          []string `json:"additionalInfo"`
+	Distance                float64  `json:"distance"`
+	IsThroughPenetrableWall bool     `json:"isThroughPenetrableWall"`
+}
+
 type telemetryObjectGameResult struct {
 	Rank       int                  `json:"rank"`
 	GameResult string               `json:"gameResult"`
