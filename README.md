@@ -1,4 +1,5 @@
 # PUBG
+[![Go Reference](https://pkg.go.dev/badge/github.com/NovikovRoman/pubg.svg)](https://pkg.go.dev/github.com/NovikovRoman/pubg)
 [![Build Status](https://travis-ci.com/NovikovRoman/pubg.svg?branch=master)](https://travis-ci.com/NovikovRoman/pubg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/NovikovRoman/pubg)](https://goreportcard.com/report/github.com/NovikovRoman/pubg)
 
