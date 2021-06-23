@@ -78,6 +78,20 @@ func NewLogCarePackageSpawn(raw json.RawMessage) (l *LogCarePackageSpawn, err er
 	return
 }
 
+// LogEmPickupLiftOff structure.
+type LogEmPickupLiftOff struct {
+	telemetryEvent
+	Instigator telemetryObjectCharacter   `json:"instigator"`
+	Riders     []telemetryObjectCharacter `json:"riders"`
+}
+
+// NewLogEmPickupLiftOff create new LogEmPickupLiftOff structure.
+func NewLogEmPickupLiftOff(raw json.RawMessage) (l *LogEmPickupLiftOff, err error) {
+	l = &LogEmPickupLiftOff{}
+	err = json.Unmarshal(raw, l)
+	return
+}
+
 // LogGameStatePeriodic structure.
 type LogGameStatePeriodic struct {
 	telemetryEvent
