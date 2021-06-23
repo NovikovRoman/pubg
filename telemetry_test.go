@@ -84,7 +84,7 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 	case "LogEmPickupLiftOff":
 		l, err := NewLogEmPickupLiftOff(raw)
 		require.Nil(t, err)
-		require.NotNil(t, l.Instigator)
+		require.Equal(t, l.Date, eventDate)
 
 	case "LogGameStatePeriodic":
 		l, err := NewLogGameStatePeriodic(raw)

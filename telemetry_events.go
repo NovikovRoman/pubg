@@ -88,7 +88,9 @@ type LogEmPickupLiftOff struct {
 // NewLogEmPickupLiftOff create new LogEmPickupLiftOff structure.
 func NewLogEmPickupLiftOff(raw json.RawMessage) (l *LogEmPickupLiftOff, err error) {
 	l = &LogEmPickupLiftOff{}
-	err = json.Unmarshal(raw, l)
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
 	return
 }
 
