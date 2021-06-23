@@ -465,6 +465,23 @@ func NewLogPlayerDestroyBreachableWall(raw json.RawMessage) (l *LogPlayerDestroy
 	return
 }
 
+// LogPlayerDestroyProp structure.
+type LogPlayerDestroyProp struct {
+	telemetryEvent
+	Attacker       telemetryObjectCharacter `json:"attacker"`
+	ObjectType     string                   `json:"objectType"`
+	ObjectLocation telemetryObjectLocation  `json:"objectLocation"`
+}
+
+// NewLogPlayerDestroyProp create new LogPlayerDestroyProp structure.
+func NewLogPlayerDestroyProp(raw json.RawMessage) (l *LogPlayerDestroyProp, err error) {
+	l = &LogPlayerDestroyProp{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogPlayerKill structure.
 type LogPlayerKill struct {
 	telemetryEvent

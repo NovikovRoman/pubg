@@ -196,6 +196,11 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 		require.Nil(t, err)
 		require.Equal(t, l.Date, eventDate)
 
+	case "LogPlayerDestroyProp":
+		l, err := NewLogPlayerDestroyProp(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
 	case "LogPlayerKill":
 		l, err := NewLogPlayerKill(raw)
 		require.Nil(t, err)
