@@ -508,6 +508,8 @@ type LogPlayerKillV2 struct {
 	FinishDamageInfo           telemetryObjectDamageInfo `json:"finishDamageInfo"`
 	Killer                     telemetryObjectCharacter  `json:"killer"`
 	KillerDamageInfo           telemetryObjectDamageInfo `json:"killerDamageInfo"`
+	AssistsAccountId           []string                  `json:"assists_AccountId"`
+	TeamKillersAccountId       []string                  `json:"teamKillers_AccountId"`
 	IsSuicide                  bool                      `json:"isSuicide"`
 }
 
