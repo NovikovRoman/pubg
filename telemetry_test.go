@@ -226,6 +226,16 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 		require.Nil(t, err)
 		require.Equal(t, l.Date, eventDate)
 
+	case "LogPlayerRedeploy":
+		l, err := NewLogPlayerRedeploy(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
+	case "LogPlayerRedeployBRStart":
+		l, err := NewLogPlayerRedeployBRStart(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
 	case "LogPlayerPosition":
 		l, err := NewLogPlayerPosition(raw)
 		require.Nil(t, err)

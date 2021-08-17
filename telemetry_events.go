@@ -598,6 +598,36 @@ func NewLogPlayerMakeGroggy(raw json.RawMessage) (l *LogPlayerMakeGroggy, err er
 	return
 }
 
+// LogPlayerRedeploy structure.
+type LogPlayerRedeploy struct {
+	telemetryEvent
+	Character telemetryObjectCharacter `json:"character"`
+}
+
+// NewLogPlayerRedeploy create new LogPlayerRedeploy structure.
+func NewLogPlayerRedeploy(raw json.RawMessage) (l *LogPlayerRedeploy, err error) {
+	l = &LogPlayerRedeploy{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
+// LogPlayerRedeployBRStart structure.
+type LogPlayerRedeployBRStart struct {
+	telemetryEvent
+	Characters []telemetryObjectCharacter `json:"characters"`
+}
+
+// NewLogPlayerRedeployBRStart create new LogPlayerRedeployBRStart structure.
+func NewLogPlayerRedeployBRStart(raw json.RawMessage) (l *LogPlayerRedeployBRStart, err error) {
+	l = &LogPlayerRedeployBRStart{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogPlayerPosition structure.
 type LogPlayerPosition struct {
 	telemetryEvent
