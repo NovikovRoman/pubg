@@ -23,7 +23,7 @@ type Matches struct {
 			CreatedAt    time.Time `json:"-"`
 			// Length of the match measured in seconds
 			Duration int `json:"duration"`
-			// Type of match [arcade, custom, event, official, training]
+			// Type of match [airoyale, arcade, custom, event, official, seasonal, training]
 			MatchType string `json:"latestMatchId"`
 			// Game mode played [duo, duo-fpp, solo, solo-fpp, squad, squad-fpp, conquest-duo, conquest-duo-fpp,
 			//     conquest-solo, conquest-solo-fpp, conquest-squad, conquest-squad-fpp, esports-duo, esports-duo-fpp,
