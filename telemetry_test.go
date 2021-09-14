@@ -141,6 +141,11 @@ func testEvents(t *testing.T, eventDate time.Time, eventType string, raw json.Ra
 		require.Nil(t, err)
 		require.Equal(t, l.Date, eventDate)
 
+	case "LogItemPutToVehicleTrunk":
+		l, err := NewLogItemPutToVehicleTrunk(raw)
+		require.Nil(t, err)
+		require.Equal(t, l.Date, eventDate)
+
 	case "LogItemUnequip":
 		l, err := NewLogItemUnequip(raw)
 		require.Nil(t, err)

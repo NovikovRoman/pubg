@@ -276,6 +276,23 @@ func NewLogItemPickupFromVehicleRunk(raw json.RawMessage) (l *LogItemPickupFromV
 	return
 }
 
+// LogItemPutToVehicleTrunk structure.
+type LogItemPutToVehicleTrunk struct {
+	telemetryEvent
+	Character telemetryObjectCharacter `json:"character"`
+	Vehicle   telemetryObjectVehicle   `json:"vehicle"`
+	Item      telemetryObjectItem      `json:"item"`
+}
+
+// NewLogItemPutToVehicleTrunk create new LogItemPutToVehicleTrunk structure.
+func NewLogItemPutToVehicleTrunk(raw json.RawMessage) (l *LogItemPutToVehicleTrunk, err error) {
+	l = &LogItemPutToVehicleTrunk{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogItemUnequip structure.
 type LogItemUnequip struct {
 	telemetryEvent
