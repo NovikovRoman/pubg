@@ -259,6 +259,23 @@ func NewLogItemPickupFromLootBox(raw json.RawMessage) (l *LogItemPickupFromLootB
 	return
 }
 
+// LogItemPickupFromVehicleRunk structure.
+type LogItemPickupFromVehicleRunk struct {
+	telemetryEvent
+	Character telemetryObjectCharacter `json:"character"`
+	Vehicle   telemetryObjectVehicle   `json:"vehicle"`
+	Item      telemetryObjectItem      `json:"item"`
+}
+
+// NewLogItemPickupFromVehicleRunk create new LogItemPickupFromVehicleRunk structure.
+func NewLogItemPickupFromVehicleRunk(raw json.RawMessage) (l *LogItemPickupFromVehicleRunk, err error) {
+	l = &LogItemPickupFromVehicleRunk{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogItemUnequip structure.
 type LogItemUnequip struct {
 	telemetryEvent
