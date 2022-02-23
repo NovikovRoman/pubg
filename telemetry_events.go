@@ -78,6 +78,22 @@ func NewLogCarePackageSpawn(raw json.RawMessage) (l *LogCarePackageSpawn, err er
 	return
 }
 
+// LogCharacterCarry structure.
+type LogCharacterCarry struct {
+	telemetryEvent
+	Character  telemetryObjectCharacter `json:"character"`
+	CarryState string                   `json:"carryState"`
+}
+
+// NewLogCharacterCarry create new LogCharacterCarry structure.
+func NewLogCharacterCarry(raw json.RawMessage) (l *LogCharacterCarry, err error) {
+	l = &LogCharacterCarry{}
+	if err = json.Unmarshal(raw, l); err == nil {
+		l.Date, _ = time.Parse(layoutDateTime, l.DateRaw)
+	}
+	return
+}
+
 // LogEmPickupLiftOff structure.
 type LogEmPickupLiftOff struct {
 	telemetryEvent
