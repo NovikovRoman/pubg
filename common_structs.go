@@ -147,13 +147,27 @@ type weaponSummary struct {
 		MostGroggiesInAGame int `json:"MostGroggiesInAGame"`
 	} `json:"StatsTotal"`
 
-	// All of the medals received for this weapon
-	Medals []struct {
-		// The name of the medal
-		MedalID string `json:"MedalId"`
-		// The number of times that the player received the medal
-		Count int `json:"Count"`
-	} `json:"Medals"`
+	OfficialStatsTotal struct {
+		MostDefeatsInAGame int `json:"MostDefeatsInAGame"`
+		Defeats            int `json:"Defeats"`
+		DamagePlayer       int `json:"DamagePlayer"`
+		HeadShots          int `json:"HeadShots"`
+		Kills              int `json:"Kills"`
+		MostKillsInAGame   int `json:"MostKillsInAGame"`
+		Groggies           int `json:"Groggies"`
+		LongestKill        int `json:"LongestKill"`
+	} `json:"OfficialStatsTotal"`
+
+	CompetitiveStatsTotal struct {
+		MostDefeatsInAGame int `json:"MostDefeatsInAGame"`
+		Defeats            int `json:"Defeats"`
+		DamagePlayer       int `json:"DamagePlayer"`
+		HeadShots          int `json:"HeadShots"`
+		Kills              int `json:"Kills"`
+		MostKillsInAGame   int `json:"MostKillsInAGame"`
+		Groggies           int `json:"Groggies"`
+		LongestKill        int `json:"LongestKill"`
+	} `json:"CompetitiveStatsTotal"`
 }
 
 type rankedStatistics struct {
