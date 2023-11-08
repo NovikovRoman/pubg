@@ -36,6 +36,8 @@ type playerData struct {
 		TitleID string `json:"titleId"`
 		// Platform shard
 		ShardID string `json:"shardId"`
+		// Innocent, TemporaryBan, PermanentBan
+		BanType string `json:"banType"`
 	} `json:"attributes"`
 
 	// References to resource objects related to this player
