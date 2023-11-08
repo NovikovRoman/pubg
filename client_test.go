@@ -1,11 +1,12 @@
 package pubg
 
 import (
-	"github.com/stretchr/testify/require"
 	"net/http"
 	"net/url"
 	"os"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 const (

@@ -23,7 +23,7 @@ func init() {
 		log.Fatal("Set the environment variable APIKEY before retrying.")
 	}
 
-	cTest = NewClient(os.Getenv("APIKEY"), nil)
+	cTest = NewClient(apiKey, nil)
 
 	// Когда проходим все тесты, необходимо притормаживать, тк ограничение 10 запросов в минуту
 	if os.Getenv("PAUSE") != "" {
