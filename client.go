@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -89,7 +88,7 @@ func (c Client) getBytes(resp *http.Response) (body []byte, err error) {
 		reader = resp.Body
 	}
 
-	body, err = ioutil.ReadAll(reader)
+	body, err = io.ReadAll(reader)
 	return
 }
 

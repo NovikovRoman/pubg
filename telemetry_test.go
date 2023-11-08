@@ -2,10 +2,11 @@ package pubg
 
 import (
 	"encoding/json"
-	"github.com/stretchr/testify/require"
-	"io/ioutil"
+	"os"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestClient_NewTelemetryFromURL(t *testing.T) {
@@ -41,7 +42,7 @@ func TestClient_NewTelemetryFromFile(t *testing.T) {
 }
 
 func TestClient_NewTelemetryFromBytes(t *testing.T) {
-	f, err := ioutil.ReadFile(testTelemetryFile)
+	f, err := os.ReadFile(testTelemetryFile)
 	require.Nil(t, err)
 
 	tm, err := NewTelemetryFromBytes(f)
