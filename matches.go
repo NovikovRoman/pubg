@@ -177,7 +177,7 @@ type asset struct {
 	} `json:"attributes"`
 }
 
-// Matches returns a single match.
+// Deprecated: Matches returns a single match.
 func (c Client) Matches(platform Platform, matchID string) (matches *Matches, err error) {
 	b, _, err := c.requestGET(platform, fmt.Sprintf("/matches/%s", matchID))
 	if err != nil {

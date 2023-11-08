@@ -70,7 +70,7 @@ func (c Client) Tournament(tournamentID string) (tournament *Tournament, err err
 	return
 }
 
-// Tournaments returns the list of available tournaments.
+// Deprecated: Tournaments returns the list of available tournaments.
 func (c Client) Tournaments() (tournaments *Tournaments, err error) {
 	b, _, err := c.requestGET(EmptyPlatform, "/tournaments")
 	if err != nil {
