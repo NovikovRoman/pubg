@@ -76,7 +76,7 @@ type survivalMasteryStats struct {
 	LastMatchValue float64 `json:"lastMatchValue"`
 }
 
-// WeaponMastery returns a weapon mastery information for a single player.
+// SurvivalMastery returns a survival mastery information for a single player.
 func (c Client) SurvivalMastery(platform Platform, accountID string) (survivalMastery *SurvivalMastery, err error) {
 	b, _, err := c.requestGET(platform, fmt.Sprintf("/players/%s/survival_mastery", accountID))
 	if err != nil {
