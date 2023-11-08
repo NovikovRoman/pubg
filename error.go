@@ -7,7 +7,6 @@ type Error interface {
 
 // ErrBadRequest structure.
 type ErrBadRequest struct {
-	error
 	title  string
 	detail string
 }
@@ -24,7 +23,6 @@ func (e ErrBadRequest) Error() string {
 
 // ErrUnauthorized structure.
 type ErrUnauthorized struct {
-	error
 	title  string
 	detail string
 }
@@ -41,7 +39,6 @@ func (e ErrUnauthorized) Error() string {
 
 // ErrNotFound structure.
 type ErrNotFound struct {
-	error
 	title  string
 	detail string
 }
@@ -58,7 +55,6 @@ func (e ErrNotFound) Error() string {
 
 // ErrUnsupportedMediaType structure.
 type ErrUnsupportedMediaType struct {
-	error
 	title  string
 	detail string
 }
@@ -75,8 +71,6 @@ func (e ErrUnsupportedMediaType) Error() string {
 
 // ErrTooManyRequest structure.
 type ErrTooManyRequest struct {
-	error
-	title  string
 	detail string
 }
 
