@@ -147,26 +147,43 @@ type weaponSummary struct {
 		MostGroggiesInAGame int `json:"MostGroggiesInAGame"`
 	} `json:"StatsTotal"`
 
+	// The weapon mastery stats for this weapon for games played in Official mode only
 	OfficialStatsTotal struct {
+		// Most defeats in a single match
 		MostDefeatsInAGame int `json:"MostDefeatsInAGame"`
-		Defeats            int `json:"Defeats"`
-		DamagePlayer       int `json:"DamagePlayer"`
-		HeadShots          int `json:"HeadShots"`
-		Kills              int `json:"Kills"`
-		MostKillsInAGame   int `json:"MostKillsInAGame"`
-		Groggies           int `json:"Groggies"`
-		LongestKill        int `json:"LongestKill"`
+		// The total number of defeats in their career
+		Defeats int `json:"Defeats"`
+		// The total damage that the player has done in their career
+		DamagePlayer int `json:"DamagePlayer"`
+		// The total headshots that the player has done in their career
+		HeadShots int `json:"HeadShots"`
+		// The total number of kills for the player
+		Kills int `json:"Kills"`
+		// The most kills for a player in a single match
+		MostKillsInAGame int `json:"MostKillsInAGame"`
+		// The total number of times that the player has caused another player to become groggy during their career
+		Groggies int `json:"Groggies"`
+		// The longest distance that the player got a kill for
+		LongestKill int `json:"LongestKill"`
 	} `json:"OfficialStatsTotal"`
 
 	CompetitiveStatsTotal struct {
+		// Most defeats in a single match
 		MostDefeatsInAGame int `json:"MostDefeatsInAGame"`
-		Defeats            int `json:"Defeats"`
-		DamagePlayer       int `json:"DamagePlayer"`
-		HeadShots          int `json:"HeadShots"`
-		Kills              int `json:"Kills"`
-		MostKillsInAGame   int `json:"MostKillsInAGame"`
-		Groggies           int `json:"Groggies"`
-		LongestKill        int `json:"LongestKill"`
+		// The total number of defeats in their career
+		Defeats int `json:"Defeats"`
+		// The total damage that the player has done in their career
+		DamagePlayer int `json:"DamagePlayer"`
+		// The total headshots that the player has done in their career
+		HeadShots int `json:"HeadShots"`
+		// The total number of kills for the player
+		Kills int `json:"Kills"`
+		// The most kills for a player in a single match
+		MostKillsInAGame int `json:"MostKillsInAGame"`
+		// The total number of times that the player has caused another player to become groggy during their career
+		Groggies int `json:"Groggies"`
+		// The longest distance that the player got a kill for
+		LongestKill int `json:"LongestKill"`
 	} `json:"CompetitiveStatsTotal"`
 }
 
